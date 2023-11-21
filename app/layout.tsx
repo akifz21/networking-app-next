@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/app/lib/utils";
+import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,14 +17,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const theme = cookies().get("theme")?.value || "";
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={theme}>
       <body
         className={cn(
           "min-h-screen bg-background  antialiased",
           inter.className
         )}
       >
+        <Navbar theme={theme} />
         {children}
       </body>
     </html>

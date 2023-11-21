@@ -8,7 +8,7 @@ import { Button } from "@/app/components/ui/button";
 
 interface Login extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function Login({ className, ...props }: Login) {
+export default function Login() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {
@@ -21,7 +21,7 @@ export default function Login({ className, ...props }: Login) {
   }
 
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
+    <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Login to your account

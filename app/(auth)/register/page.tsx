@@ -2,13 +2,12 @@
 
 import * as React from "react";
 
-import { cn } from "@/app/lib/utils";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 
 interface Login extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function Register({ className, ...props }: Login) {
+export default function Register() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {
@@ -21,7 +20,7 @@ export default function Register({ className, ...props }: Login) {
   }
 
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
+    <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Create an account
