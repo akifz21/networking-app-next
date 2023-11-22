@@ -1,23 +1,30 @@
 "use client";
 
-import * as React from "react";
-
-import { cn } from "@/app/lib/utils";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
-
-interface Login extends React.HTMLAttributes<HTMLDivElement> {}
+import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { useAuthStore } from "@/app/stores/authStore";
+import { UserLogin } from "@/app/types";
 
 export default function Login() {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const login = useAuthStore((state) => state.login);
+  const isLoading = useAuthStore((state) => state.isLoading);
 
-  async function onSubmit(event: React.SyntheticEvent) {
+  const [formData, setFormData] = useState<UserLogin>({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  async function onSubmit(event: SyntheticEvent) {
     event.preventDefault();
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    login(formData);
   }
 
   return (
@@ -31,10 +38,12 @@ export default function Login() {
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Input
-              id="lastName"
+              id="email"
               placeholder="E-Mail"
+              name="email"
               type="text"
-              autoCapitalize="none"
+              value={formData.email}
+              onChange={handleChange}
               disabled={isLoading}
             />
           </div>
@@ -42,9 +51,10 @@ export default function Login() {
             <Input
               id="password"
               placeholder="Password"
+              name="password"
               type="password"
-              autoCapitalize="none"
-              autoCorrect="off"
+              value={formData.password}
+              onChange={handleChange}
               disabled={isLoading}
             />
           </div>

@@ -9,6 +9,13 @@ export interface UserRegister {
   password: string;
   email: string;
 }
+
+export interface UserPayload {
+  id: string;
+  fullName: string;
+  email: string;
+}
+
 export interface User extends UserRegister {
   id: string;
 }
