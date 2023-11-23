@@ -1,5 +1,4 @@
 "use client";
-
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
@@ -7,12 +6,13 @@ import { useAuthStore } from "@/app/stores/authStore";
 import { UserLogin } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/components/ui/use-toast";
+import { login } from "@/app/api/auth";
+import { AxiosError } from "axios";
 
 export default function Login() {
   const router = useRouter();
   const { toast } = useToast();
-  const login = useAuthStore((state) => state.login);
-  const isLoading = useAuthStore((state) => state.isLoading);
+  const loginState = useAuthStore((state) => state.login);
 
   const [formData, setFormData] = useState<UserLogin>({
     email: "",
@@ -28,11 +28,20 @@ export default function Login() {
 
   async function onSubmit(event: SyntheticEvent) {
     event.preventDefault();
-    login(formData);
-    toast({
-      title: "Login Successfully",
-    });
-    router.push("/");
+    try {
+      const res = await login(formData);
+      loginState(res?.data);
+      toast({
+        title: "Login Successfully.",
+      });
+      router.push("/");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast({
+          title: error.response?.data?.message,
+        });
+      }
+    }
   }
 
   return (
@@ -52,7 +61,6 @@ export default function Login() {
               type="text"
               value={formData.email}
               onChange={handleChange}
-              disabled={isLoading}
             />
           </div>
           <div className="grid gap-1">
@@ -63,10 +71,9 @@ export default function Login() {
               type="password"
               value={formData.password}
               onChange={handleChange}
-              disabled={isLoading}
             />
           </div>
-          <Button disabled={isLoading}>Login</Button>
+          <Button>Login</Button>
         </div>
       </form>
       <div className="relative">
@@ -79,7 +86,7 @@ export default function Login() {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
+      <Button variant="outline" type="button">
         Github
       </Button>
     </div>

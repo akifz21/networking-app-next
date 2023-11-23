@@ -3,10 +3,15 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useAuthStore } from "@/app/stores/authStore";
+import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
 
 export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logout = useAuthStore((state) => state.logout);
+  const router = useRouter();
+  const { toast } = useToast();
   return (
     <>
       {!isLoggedIn ? (
@@ -21,6 +26,18 @@ export default function Profile() {
       ) : (
         <>
           <p>{user.fullName}</p>
+          <Button
+            variant={"outline"}
+            onClick={() => {
+              logout();
+              router.push("/");
+              toast({
+                title: "Logged out. ",
+              });
+            }}
+          >
+            Logout
+          </Button>
         </>
       )}
     </>

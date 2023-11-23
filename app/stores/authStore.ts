@@ -1,15 +1,12 @@
 import { create } from "zustand";
-import { UserLogin, UserPayload, UserRegister } from "../types";
-import { login } from "../api/auth";
+import { UserPayload } from "../types";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 interface AuthState {
   user: UserPayload;
   isLoggedIn: boolean;
-  isLoading: boolean;
-  error: any;
-  login: (data: UserLogin) => void;
-  register: (data: UserRegister) => void;
+  login: (token: string) => void;
+  logout: () => void;
 }
 
 interface DecodedToken extends JwtPayload {
@@ -31,23 +28,23 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     typeof window !== "undefined" && localStorage.getItem("token")
       ? true
       : false,
-  isLoading: false,
-  error: null,
-  login: async (data: UserLogin) => {
-    set({ isLoading: true });
-    try {
-      const res = await login(data);
-      const token = res.data;
-      const decode = jwtDecode<DecodedToken>(token);
-      set({ isLoggedIn: true });
-      set({ user: decode.user });
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(get().user));
-    } catch (error) {
-      set({ error: error });
-    } finally {
-      set({ isLoading: false });
-    }
+  login: async (token: string) => {
+    const decode = jwtDecode<DecodedToken>(token);
+    set({ isLoggedIn: true });
+    set({ user: decode.user });
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(get().user));
   },
-  register: async (data: UserRegister) => {},
+  logout: () => {
+    set({ isLoggedIn: false });
+    set({
+      user: {
+        id: "",
+        email: "",
+        fullName: "",
+      },
+    });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  },
 }));
