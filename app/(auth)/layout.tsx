@@ -19,8 +19,7 @@ export default function AuthLayout({
             src={"/auth.jpg"}
             alt=""
             fill
-            objectFit="cover"
-            objectPosition="center"
+            className="object-cover object-center"
           />
         </div>
         <div className="flex flex-col items-start justify-center h-screen lg:p-8">

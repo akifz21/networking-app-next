@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { MoonStar, Sun } from "lucide-react";
 
 const DarkModeToggle = ({ theme }: { theme: string }) => {

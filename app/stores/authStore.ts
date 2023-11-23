@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { UserLogin, UserPayload, UserRegister } from "../types";
 import { login } from "../api/auth";
-import { jwtDecode } from "jwt-decode";
+import { JwtPayload, jwtDecode } from "jwt-decode";
 
 interface AuthState {
   user: UserPayload;
@@ -12,9 +12,25 @@ interface AuthState {
   register: (data: UserRegister) => void;
 }
 
+interface DecodedToken extends JwtPayload {
+  user: UserPayload;
+}
+
 export const useAuthStore = create<AuthState>((set, get) => ({
-  user: { id: "", email: "", fullName: "" },
-  isLoggedIn: false,
+  user:
+    typeof window !== "undefined" &&
+    JSON.parse(
+      localStorage.getItem("user") ||
+        JSON.stringify({
+          id: "",
+          email: "",
+          fullName: "",
+        })
+    ),
+  isLoggedIn:
+    typeof window !== "undefined" && localStorage.getItem("token")
+      ? true
+      : false,
   isLoading: false,
   error: null,
   login: async (data: UserLogin) => {
@@ -22,10 +38,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       const res = await login(data);
       const token = res.data;
-      const user: UserPayload = jwtDecode(token);
+      const decode = jwtDecode<DecodedToken>(token);
       set({ isLoggedIn: true });
-      set({ user: user });
-      console.log(user);
+      set({ user: decode.user });
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(get().user));
     } catch (error) {

@@ -5,8 +5,12 @@ import { Button } from "@/app/components/ui/button";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useAuthStore } from "@/app/stores/authStore";
 import { UserLogin } from "@/app/types";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/app/components/ui/use-toast";
 
 export default function Login() {
+  const router = useRouter();
+  const { toast } = useToast();
   const login = useAuthStore((state) => state.login);
   const isLoading = useAuthStore((state) => state.isLoading);
 
@@ -25,6 +29,10 @@ export default function Login() {
   async function onSubmit(event: SyntheticEvent) {
     event.preventDefault();
     login(formData);
+    toast({
+      title: "Login Successfully",
+    });
+    router.push("/");
   }
 
   return (
