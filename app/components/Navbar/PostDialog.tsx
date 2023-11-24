@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/app/components/ui/button";
 import {
   Dialog,
@@ -11,7 +12,6 @@ import { Input } from "@/app/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import { Label } from "@radix-ui/react-label";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import { PostRequest } from "@/app/types/post.types";
 import { postAdd } from "@/app/api/post";
 import { useToast } from "../ui/use-toast";
 import { useAuthStore } from "@/app/stores/authStore";
@@ -19,23 +19,36 @@ import { useAuthStore } from "@/app/stores/authStore";
 export default function PostDialog() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const user = useAuthStore((state) => state.user);
-  const [formData, setFormData] = useState<PostRequest>({
-    description: "",
-    userId: user.id,
-  });
+  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const user = useAuthStore((state) => state.user);
+  const [description, setDescription] = useState<string>("");
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedFiles(event.target.files);
+  };
+
+  const handleDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(e.target.value);
+  };
+
+  const handleFileUpload = async (formData: FormData) => {
+    if (selectedFiles) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append("files", selectedFiles[i]);
+      }
+    }
   };
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
       setIsLoading(true);
+      const formData = new FormData();
+      formData.append("userId", user.id);
+      formData.append("description", description);
+      handleFileUpload(formData);
+      console.log(formData);
       const res = await postAdd(formData);
       toast({
         title: res.data,
@@ -54,7 +67,7 @@ export default function PostDialog() {
       <DialogTrigger asChild>
         <Button variant="default">Share Post</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[780px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Share a post</DialogTitle>
@@ -66,8 +79,8 @@ export default function PostDialog() {
                 placeholder="Description"
                 className="w-full"
                 name="description"
-                value={formData.description}
-                onChange={handleChange}
+                value={description}
+                onChange={handleDescription}
               />
             </div>
             <div className="flex flex-row items-center gap-2">
@@ -77,6 +90,9 @@ export default function PostDialog() {
                 type="file"
                 placeholder="Image"
                 className="w-full "
+                onChange={handleFileSelect}
+                multiple
+                onSubmit={handleSubmit}
               />
             </div>
           </div>

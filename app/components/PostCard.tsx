@@ -35,15 +35,30 @@ export default function PostCard({}: Props) {
       </CardContent>
       <CardFooter>
         <div className="relative h-80 w-full">
-          <div className="grid grid-cols-3 gap-2 h-full">
+          <div className="grid grid-flow-col auto-cols-1 gap-2 h-full">
             <div className=" relative h-full">
-              <Image src={"/post.jpg"} fill alt="" objectFit="cover" />
+              <Image
+                src={"/post.jpg"}
+                fill
+                alt=""
+                className="object-cover object-center rounded-sm"
+              />
             </div>
-            <div className=" relative h-full">
-              <Image src={"/auth.jpg"} fill alt="" objectFit="cover" />
+            <div className="relative h-full">
+              <Image
+                src={"/auth.jpg"}
+                fill
+                alt=""
+                className="object-cover object-center rounded-sm"
+              />
             </div>
-            <div className=" relative h-full">
-              <Image src={"/post.jpg"} fill alt="" objectFit="cover" />
+            <div className="relative h-full">
+              <Image
+                src={"/post.jpg"}
+                fill
+                alt=""
+                className="object-cover object-center rounded-sm"
+              />
             </div>
           </div>
         </div>
