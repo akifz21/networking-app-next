@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useAuthStore } from "@/app/stores/authStore";
 import { useRouter } from "next/navigation";
 import { useToast } from "../ui/use-toast";
+import PostDialog from "./PostDialog";
 
 export default function Profile() {
   const user = useAuthStore((state) => state.user);
@@ -26,6 +27,7 @@ export default function Profile() {
       ) : (
         <>
           <p>{user.fullName}</p>
+          <PostDialog />
           <Button
             variant={"outline"}
             onClick={() => {
