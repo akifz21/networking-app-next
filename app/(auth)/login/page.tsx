@@ -1,18 +1,19 @@
 "use client";
-import { Input } from "@/app/components/ui/input";
-import { Button } from "@/app/components/ui/button";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useAuthStore } from "@/app/stores/authStore";
 import { UserLogin } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/components/ui/use-toast";
 import { login } from "@/app/api/auth";
-import { AxiosError } from "axios";
+import { Input } from "@/app/components/ui/input";
+import { Button } from "@/app/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export default function Login() {
   const router = useRouter();
   const { toast } = useToast();
   const loginState = useAuthStore((state) => state.login);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [formData, setFormData] = useState<UserLogin>({
     email: "",
@@ -29,18 +30,19 @@ export default function Login() {
   async function onSubmit(event: SyntheticEvent) {
     event.preventDefault();
     try {
+      setIsLoading(true);
       const res = await login(formData);
       loginState(res?.data);
       toast({
         title: "Login Successfully.",
       });
       router.push("/");
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        toast({
-          title: error.response?.data?.message,
-        });
-      }
+    } catch (error: any) {
+      toast({
+        title: error?.message,
+      });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -73,7 +75,13 @@ export default function Login() {
               onChange={handleChange}
             />
           </div>
-          <Button>Login</Button>
+          <Button>
+            {isLoading ? (
+              <Loader2 strokeWidth={3} className="animate-spin" />
+            ) : (
+              "Login"
+            )}
+          </Button>
         </div>
       </form>
       <div className="relative">

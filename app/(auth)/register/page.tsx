@@ -1,22 +1,47 @@
 "use client";
 
-import * as React from "react";
-
+import { register } from "@/app/api/auth";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
-
-interface Login extends React.HTMLAttributes<HTMLDivElement> {}
+import { useToast } from "@/app/components/ui/use-toast";
+import { UserRegister } from "@/app/types";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 
 export default function Register() {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { toast } = useToast();
+  const router = useRouter();
+  const [formData, setFormData] = useState<UserRegister>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
-  async function onSubmit(event: React.SyntheticEvent) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  async function onSubmit(event: SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
-
-    setTimeout(() => {
+    try {
+      const res = await register(formData);
+      toast({
+        title: "Register Successfully.",
+      });
+      router.push("/login");
+    } catch (error: any) {
+      toast({
+        title: error.message,
+      });
+    } finally {
       setIsLoading(false);
-    }, 3000);
+    }
   }
 
   return (
@@ -37,12 +62,18 @@ export default function Register() {
               placeholder="First Name"
               type="text"
               autoCapitalize="none"
+              name="firstName"
+              onChange={handleChange}
+              value={formData.firstName}
               disabled={isLoading}
             />
           </div>
           <div className="grid gap-1">
             <Input
               id="lastName"
+              name="lastName"
+              onChange={handleChange}
+              value={formData.lastName}
               placeholder="Last Name"
               type="text"
               autoCapitalize="none"
@@ -51,8 +82,11 @@ export default function Register() {
           </div>
           <div className="grid gap-1">
             <Input
-              id="lastName"
+              id="email"
               placeholder="E-Mail"
+              onChange={handleChange}
+              name="email"
+              value={formData.email}
               type="text"
               autoCapitalize="none"
               disabled={isLoading}
@@ -61,6 +95,8 @@ export default function Register() {
           <div className="grid gap-1">
             <Input
               id="password"
+              name="password"
+              onChange={handleChange}
               placeholder="Password"
               type="password"
               autoCapitalize="none"

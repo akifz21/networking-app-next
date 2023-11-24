@@ -28,7 +28,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     typeof window !== "undefined" && localStorage.getItem("token")
       ? true
       : false,
-  login: async (token: string) => {
+  login: (token: string) => {
     const decode = jwtDecode<DecodedToken>(token);
     set({ isLoggedIn: true });
     set({ user: decode.user });
