@@ -3,14 +3,13 @@
 import { register } from "@/app/api/auth";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
-import { useToast } from "@/app/components/ui/use-toast";
 import { UserRegister } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { toast } = useToast();
   const router = useRouter();
   const [formData, setFormData] = useState<UserRegister>({
     firstName: "",
@@ -31,14 +30,10 @@ export default function Register() {
     setIsLoading(true);
     try {
       const res = await register(formData);
-      toast({
-        title: "Register Successfully.",
-      });
+      toast.success("Register Successfully.");
       router.push("/login");
     } catch (error: any) {
-      toast({
-        title: error.message,
-      });
+      toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -47,9 +42,7 @@ export default function Register() {
   return (
     <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Create an account
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
         <p className="text-sm text-muted-foreground">
           Enter your informations below to create your account
         </p>
@@ -112,9 +105,7 @@ export default function Register() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
+          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
         </div>
       </div>
       <Button variant="outline" type="button" disabled={isLoading}>

@@ -1,5 +1,5 @@
 import PostCard from "./components/PostCard";
-import PostDialog from "./components/navbar/PostDialog";
+import PostDialog from "./components/PostDialog";
 
 export default function Home() {
   return (

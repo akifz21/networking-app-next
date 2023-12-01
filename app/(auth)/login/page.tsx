@@ -3,15 +3,14 @@ import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useAuthStore } from "@/app/stores/authStore";
 import { UserLogin } from "@/app/types";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/app/components/ui/use-toast";
 import { login } from "@/app/api/auth";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const router = useRouter();
-  const { toast } = useToast();
   const loginState = useAuthStore((state) => state.login);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -33,14 +32,10 @@ export default function Login() {
       setIsLoading(true);
       const res = await login(formData);
       loginState(res?.data);
-      toast({
-        title: "Login Successfully.",
-      });
+      toast.success("Login Successfully.");
       router.push("/");
     } catch (error: any) {
-      toast({
-        title: error?.message,
-      });
+      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
@@ -49,9 +44,7 @@ export default function Login() {
   return (
     <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Login to your account
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Login to your account</h1>
       </div>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
@@ -76,11 +69,7 @@ export default function Login() {
             />
           </div>
           <Button>
-            {isLoading ? (
-              <Loader2 strokeWidth={3} className="animate-spin" />
-            ) : (
-              "Login"
-            )}
+            {isLoading ? <Loader2 strokeWidth={3} className="animate-spin" /> : "Login"}
           </Button>
         </div>
       </form>
@@ -89,9 +78,7 @@ export default function Login() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
+          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
         </div>
       </div>
       <Button variant="outline" type="button">

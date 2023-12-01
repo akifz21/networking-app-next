@@ -9,20 +9,19 @@ import {
   DialogTrigger,
 } from "@/app/components/ui/dialog";
 import { Input } from "@/app/components/ui/input";
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "./ui/textarea";
 import { Label } from "@radix-ui/react-label";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { postAdd } from "@/app/api/post";
-import { useToast } from "../ui/use-toast";
 import { useAuthStore } from "@/app/stores/authStore";
+import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function PostDialog() {
-  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-
-  const user = useAuthStore((state) => state.user);
   const [description, setDescription] = useState<string>("");
+  const user = useAuthStore((state) => state.user);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedFiles(event.target.files);
@@ -32,7 +31,7 @@ export default function PostDialog() {
     setDescription(e.target.value);
   };
 
-  const handleFileUpload = async (formData: FormData) => {
+  const handleFileUpload = (formData: FormData) => {
     if (selectedFiles) {
       for (let i = 0; i < selectedFiles.length; i++) {
         formData.append("files", selectedFiles[i]);
@@ -48,15 +47,10 @@ export default function PostDialog() {
       formData.append("userId", user.id);
       formData.append("description", description);
       handleFileUpload(formData);
-      console.log(formData);
       const res = await postAdd(formData);
-      toast({
-        title: res.data,
-      });
+      toast.success(res.data);
     } catch (error: any) {
-      toast({
-        title: error?.message,
-      });
+      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +92,7 @@ export default function PostDialog() {
           </div>
           <DialogFooter>
             <Button type="submit" className="w-full">
-              Share
+              {isLoading ? <Loader2 strokeWidth={3} className="animate-spin" /> : "Share"}
             </Button>
           </DialogFooter>
         </form>
