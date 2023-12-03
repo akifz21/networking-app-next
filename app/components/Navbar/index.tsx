@@ -1,5 +1,5 @@
 import React from "react";
-import DarkModeToggle from "./DarkModeToggle";
+import DarkModeToggle from "./theme-toggle";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";

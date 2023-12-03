@@ -1,6 +1,6 @@
 "use client";
-import PostDialog from "./components/PostShareDialog";
-import PostList from "./components/PostList";
+import PostDialog from "./components/post-share-dialog";
+import PostList from "./components/post-list";
 
 export default function Home() {
   return (
