@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const baseURL = "http://localhost:8000/";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const instance = axios.create({
   baseURL,
@@ -19,7 +19,6 @@ instance.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-    console.log(error);
     const errorResponse = error.response?.data;
 
     return Promise.reject(errorResponse || error);

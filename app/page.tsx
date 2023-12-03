@@ -1,5 +1,6 @@
-import PostCard from "./components/PostCard";
-import PostDialog from "./components/PostDialog";
+"use client";
+import PostDialog from "./components/PostShareDialog";
+import PostList from "./components/PostList";
 
 export default function Home() {
   return (
@@ -7,10 +8,7 @@ export default function Home() {
       <div className="h-screen col-span-1"></div>
       <div className="border-x h-full flex flex-col col-span-2 px-10 justify-start  gap-4">
         <PostDialog />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        <PostList />
       </div>
       <div className="  h-screen col-span-1"></div>
     </div>

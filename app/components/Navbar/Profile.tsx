@@ -29,7 +29,7 @@ export default function Profile() {
             variant={"outline"}
             onClick={() => {
               logout();
-              router.push("/");
+              router.push("/login");
               toast.success("Logged out. ");
             }}
           >

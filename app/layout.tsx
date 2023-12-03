@@ -18,8 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={theme}>
       <body className={cn("min-h-screen bg-background  antialiased", inter.className)}>
-        <Navbar theme={theme} />
         <Toaster />
+        <Navbar theme={theme} />
+
         {children}
       </body>
     </html>

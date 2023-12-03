@@ -16,6 +16,7 @@ import { postAdd } from "@/app/api/post";
 import { useAuthStore } from "@/app/stores/authStore";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { mutate } from "swr";
 
 export default function PostDialog() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -49,6 +50,7 @@ export default function PostDialog() {
       handleFileUpload(formData);
       const res = await postAdd(formData);
       toast.success(res.data);
+      mutate("/posts/posts");
     } catch (error: any) {
       toast.error(error?.message);
     } finally {
