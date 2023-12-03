@@ -3,7 +3,7 @@ import DarkModeToggle from "./theme-toggle";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-const Profile = dynamic(() => import("./Profile"), {
+const Profile = dynamic(() => import("./profile"), {
   ssr: false,
   loading: () => <Loader2 strokeWidth={3} className="animate-spin" />,
 });
