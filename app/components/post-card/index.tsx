@@ -5,17 +5,19 @@ import { Button } from "../ui/button";
 import { Heart, MessageCircle } from "lucide-react";
 import { Post } from "../../types";
 import Images from "./images";
+import { formatDateForShow } from "@/app/lib/utils";
 
 type Props = {
   post: Post;
 };
 
 export default function PostCard({ post }: Props) {
+  console.log(post.createdDate);
   return (
     <Card>
       <CardHeader>
         <CardTitle>{post.userFirstName + " " + post.userLastName}</CardTitle>
-        <CardDescription>{"Fri Nov 24 2023 14:15:46 GMT+0300 (GMT+03:00)"}</CardDescription>
+        <CardDescription>{formatDateForShow(post.createdDate, true)}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col  gap-2">
         <p>{post.description}</p>

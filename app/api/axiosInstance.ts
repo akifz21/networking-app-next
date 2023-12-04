@@ -19,6 +19,11 @@ instance.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+    if (error?.response?.status === 401 && error.response.data === "Token Expired") {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+      console.log("Token Expired");
+    }
     const errorResponse = error.response?.data;
 
     return Promise.reject(errorResponse || error);

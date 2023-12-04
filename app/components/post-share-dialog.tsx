@@ -22,6 +22,7 @@ export default function PostDialog() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [description, setDescription] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false);
   const user = useAuthStore((state) => state.user);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +51,7 @@ export default function PostDialog() {
       handleFileUpload(formData);
       const res = await postAdd(formData);
       toast.success(res.data);
+      setOpen(!open);
       mutate("/posts/posts");
     } catch (error: any) {
       toast.error(error?.message);
@@ -59,7 +61,7 @@ export default function PostDialog() {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="default">Share Post</Button>
       </DialogTrigger>
@@ -80,7 +82,7 @@ export default function PostDialog() {
               />
             </div>
             <div className="flex flex-row items-center gap-2">
-              <Label>Image</Label>
+              <Label>Images</Label>
               <Input
                 id="file"
                 type="file"

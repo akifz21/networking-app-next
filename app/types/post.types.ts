@@ -4,6 +4,8 @@ export interface Post {
   description: string;
   userFirstName: string;
   userLastName: string;
+  createdDate: string;
+  lastModifiedDate: string;
 }
 
 export interface PostRequest {
