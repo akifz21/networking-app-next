@@ -12,11 +12,12 @@ import { Comment, CommentRequest } from "@/app/types";
 import { Loader2, MessageCircle } from "lucide-react";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import useSWR from "swr";
-import { Card, CardContent, CardHeader } from "../ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { addComment } from "@/app/api/comment";
 import toast from "react-hot-toast";
 import { useAuthStore } from "@/app/stores/authStore";
 import { fetcher } from "@/app/api/axiosInstance";
+import { formatDateForShow } from "@/app/lib/utils";
 
 type Props = {
   id: string;
@@ -24,6 +25,7 @@ type Props = {
 
 export function Comments({ id }: Props) {
   const [open, setOpen] = useState<boolean>(false);
+  const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const user = useAuthStore((state) => state.user);
   const { data, isLoading, error, mutate } = useSWR<Comment[], Error>(
     open ? `/posts/comments/post/${id}` : null,
@@ -43,11 +45,15 @@ export function Comments({ id }: Props) {
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
+      setSubmitLoading(true);
       const res = await addComment(form);
       mutate();
       toast.success(res.data);
+      setForm({ ...form, description: "" });
     } catch (error: any) {
       toast.error(error.message);
+    } finally {
+      setSubmitLoading(false);
     }
   };
 
@@ -59,14 +65,22 @@ export function Comments({ id }: Props) {
     if (isLoading)
       return <Loader2 strokeWidth={3} size={40} className="animate-spin self-center" />;
 
+    if (data && data?.length <= 0) {
+      return <div>No comments found.</div>;
+    }
+
     return (
       <>
         {data?.map((comment) => (
-          <Card>
+          <Card key={comment.id}>
             <CardHeader>
-              {comment.userFirstName} {comment.userLastName}
+              <CardTitle className="text-lg">
+                {comment.userFirstName} {comment.userLastName}
+              </CardTitle>
+              <CardDescription>{formatDateForShow(comment.createdDate, true)}</CardDescription>
             </CardHeader>
-            <CardContent className="font-extralight">{comment.description}</CardContent>
+
+            <CardContent>{comment.description}</CardContent>
           </Card>
         ))}
       </>
@@ -92,7 +106,9 @@ export function Comments({ id }: Props) {
               onChange={handleChange}
               className="col-span-3"
             />
-            <Button type="submit">Share Comment</Button>
+            <Button type="submit" disabled={submitLoading}>
+              Share Comment
+            </Button>
           </form>
           <CommentList />
         </div>

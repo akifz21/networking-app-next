@@ -4,6 +4,7 @@ export interface Comment {
   description: string;
   userFirstName: string;
   userLastName: string;
+  createdDate: string;
 }
 
 export interface CommentRequest {

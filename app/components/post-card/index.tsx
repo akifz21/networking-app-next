@@ -7,6 +7,7 @@ import { Post } from "../../types";
 import Images from "./images";
 import { formatDateForShow } from "@/app/lib/utils";
 import { Comments } from "./comments";
+import Like from "./like";
 
 type Props = {
   post: Post;
@@ -25,9 +26,7 @@ export default function PostCard({ post }: Props) {
         <Images id={post.id} />
       </CardContent>
       <CardFooter className="flex flex-row gap-2  ">
-        <Button className="flex-1 " variant={"secondary"}>
-          <Heart strokeWidth={3} />
-        </Button>
+        <Like id={post.id} />
         <Comments id={post.id} />
       </CardFooter>
     </Card>
