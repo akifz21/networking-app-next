@@ -11,7 +11,7 @@ import {
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "@radix-ui/react-label";
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import { postAdd } from "@/app/api/post";
 import { useAuthStore } from "@/app/stores/authStore";
 import { Loader2 } from "lucide-react";
