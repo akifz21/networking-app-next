@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar"
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
+import { User } from "@/app/types";
 
 const Follow = dynamic(() => import("./follow"), {
   ssr: false,
@@ -10,24 +11,25 @@ const Follow = dynamic(() => import("./follow"), {
 });
 
 type Props = {
-  userName: string;
-  userId: string;
+  user: User;
 };
 
-export function UserCard({ userId, userName }: Props) {
+export function UserCard({ user }: Props) {
   return (
     <Card>
       <CardHeader>
-        <Link href={`/profile/${userId}`}>
-          <CardTitle className="flex flex-row gap-4 items-center">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <span className="flex flex-col">{userName}</span>
-            <Follow id={userId} />
-          </CardTitle>
-        </Link>
+        <CardTitle className="flex flex-row gap-4 items-center">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <Link href={`/profile/${user.id}`}>
+            <span className="flex flex-col">
+              {user.firstName} {user.lastName}
+            </span>
+          </Link>
+          <Follow id={user.id} />
+        </CardTitle>
       </CardHeader>
     </Card>
   );
