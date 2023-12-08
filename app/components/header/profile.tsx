@@ -24,7 +24,7 @@ export default function Profile() {
         </>
       ) : (
         <>
-          <p>{user.fullName}</p>
+          <Link href={`/profile/${user.id}`}>{user.fullName}</Link>
           <Button
             variant={"outline"}
             onClick={() => {

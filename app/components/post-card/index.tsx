@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { Heart } from "lucide-react";
 import { Post } from "../../types";
 import Images from "./images";
 import { formatDateForShow } from "@/app/lib/utils";
@@ -14,7 +12,6 @@ type Props = {
 };
 
 export default function PostCard({ post }: Props) {
-  console.log(post.createdDate);
   return (
     <Card>
       <CardHeader>

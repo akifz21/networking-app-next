@@ -103,6 +103,7 @@ export function Comments({ id }: Props) {
             <Input
               id="description"
               name="description"
+              value={form.description}
               onChange={handleChange}
               className="col-span-3"
             />

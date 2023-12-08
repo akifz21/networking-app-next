@@ -1,13 +1,15 @@
 import React from "react";
-import useSWR from "swr";
 import { Post } from "../types";
-import { fetcher } from "../api/axiosInstance";
 import { Loader2 } from "lucide-react";
 import PostCard from "./post-card";
 
-export default function PostList() {
-  const { data, isLoading, error } = useSWR<Post[], Error>("/posts/posts", fetcher);
+type Props = {
+  data: Post[] | undefined;
+  isLoading: boolean;
+  error: any;
+};
 
+export default function PostList({ data, isLoading, error }: Props) {
   if (error) return <>{error.message}</>;
 
   if (isLoading) {
