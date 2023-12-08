@@ -1,6 +1,6 @@
 import React from "react";
 import { Post } from "../types";
-import { Loader2 } from "lucide-react";
+import { ConstructionIcon, Loader2 } from "lucide-react";
 import PostCard from "./post-card";
 
 type Props = {
@@ -18,6 +18,10 @@ export default function PostList({ data, isLoading, error }: Props) {
         <Loader2 size={60} strokeWidth={3} className="animate-spin  " />
       </center>
     );
+  }
+
+  if (data && data?.length <= 0) {
+    return <>This user has no posts.</>;
   }
 
   return (

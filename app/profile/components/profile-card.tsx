@@ -1,7 +1,6 @@
 "use client";
 import { fetcher } from "@/app/api/axiosInstance";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
-import { Button } from "@/app/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,7 +11,13 @@ import {
 import { User } from "@/app/types";
 import React from "react";
 import useSWR from "swr";
-import Follow from "./follow";
+import dynamic from "next/dynamic";
+import { Loader2 } from "lucide-react";
+
+const Follow = dynamic(() => import("./follow"), {
+  ssr: false,
+  loading: () => <Loader2 strokeWidth={3} className="animate-spin" />,
+});
 
 type Props = {
   id: string;

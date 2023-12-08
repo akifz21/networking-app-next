@@ -19,7 +19,9 @@ export default function Follow({ id }: Props) {
     isLoading,
     error,
     mutate,
-  } = useSWR<boolean>(`/users/follows/check?userId=${id}&followingId=${user.id}`, fetcher);
+  } = useSWR<boolean>(`/users/follows/check?userId=${user.id}&followingId=${id}`, fetcher);
+
+  const isOwner = id === user.id ? true : false;
 
   const handleFollow = async (data: FollowRequest) => {
     try {
@@ -33,13 +35,17 @@ export default function Follow({ id }: Props) {
 
   return (
     <>
-      <Button
-        disabled={isLoading}
-        variant={isFollowing ? "outline" : "default"}
-        onClick={() => handleFollow({ userId: user.id, followingId: id })}
-      >
-        {isFollowing ? "Unfollow" : "Follow"}
-      </Button>
+      {isOwner ? (
+        <Button>Edit</Button>
+      ) : (
+        <Button
+          disabled={isLoading}
+          variant={isFollowing ? "outline" : "default"}
+          onClick={() => handleFollow({ userId: user.id, followingId: id })}
+        >
+          {isFollowing ? "Unfollow" : "Follow"}
+        </Button>
+      )}
     </>
   );
 }

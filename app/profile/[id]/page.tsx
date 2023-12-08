@@ -6,6 +6,8 @@ import React from "react";
 import useSWR from "swr";
 import ProfileCard from "../components/profile-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
+import FollowerList from "../components/follower-list";
+import FollowingList from "../components/following-list";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { data, isLoading, error } = useSWR<Post[]>(`/posts/posts/user/${params.id}`, fetcher);
@@ -29,8 +31,12 @@ export default function Page({ params }: { params: { id: string } }) {
           <TabsContent value="posts">
             <PostList data={data} isLoading={isLoading} error={error} />
           </TabsContent>
-          <TabsContent value="followers">Followers</TabsContent>
-          <TabsContent value="following">Following</TabsContent>
+          <TabsContent value="followers">
+            <FollowerList id={params.id} />
+          </TabsContent>
+          <TabsContent value="following">
+            <FollowingList id={params.id} />
+          </TabsContent>
         </Tabs>
       </div>
     </div>
