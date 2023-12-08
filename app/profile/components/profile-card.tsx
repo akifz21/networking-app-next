@@ -1,3 +1,4 @@
+"use client";
 import { fetcher } from "@/app/api/axiosInstance";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Button } from "@/app/components/ui/button";
@@ -11,6 +12,7 @@ import {
 import { User } from "@/app/types";
 import React from "react";
 import useSWR from "swr";
+import Follow from "./follow";
 
 type Props = {
   id: string;
@@ -19,9 +21,7 @@ type Props = {
 export default function ProfileCard({ id }: Props) {
   const { data, isLoading, error } = useSWR<User>(`/users/${id}`, fetcher);
 
-  if (error) {
-    return <>{error?.message}</>;
-  }
+  if (error) return <>{error?.message}</>;
 
   return (
     <div className="w-full">
@@ -35,7 +35,7 @@ export default function ProfileCard({ id }: Props) {
             <span className="flex flex-col">
               {data?.firstName} {data?.lastName}
             </span>
-            <Button>Follow</Button>
+            <Follow id={id} />
           </CardTitle>
         </CardHeader>
         <CardContent>
