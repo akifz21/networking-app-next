@@ -20,8 +20,8 @@ export function UserCard({ user }: Props) {
       <CardHeader>
         <CardTitle className="flex flex-row gap-4 items-center">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarImage src="" alt="user profile" />
+            <AvatarFallback>{user.firstName.charAt(0) + user.lastName.charAt(0)}</AvatarFallback>
           </Avatar>
           <Link href={`/profile/${user.id}`}>
             <span className="flex flex-col">

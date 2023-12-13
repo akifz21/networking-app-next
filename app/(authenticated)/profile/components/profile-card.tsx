@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function ProfileCard({ id }: Props) {
-  const { data, isLoading, error } = useSWR<User>(`/users/${id}`, fetcher);
+  const { data: user, isLoading, error } = useSWR<User>(`/users/${id}`, fetcher);
 
   if (error) return <>{error?.message}</>;
 
@@ -34,11 +34,13 @@ export default function ProfileCard({ id }: Props) {
         <CardHeader>
           <CardTitle className="flex flex-row gap-4 items-center">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src="" alt="user profile" />
+              <AvatarFallback>
+                {user?.firstName.charAt(0) + "" + user?.lastName.charAt(0)}
+              </AvatarFallback>
             </Avatar>
             <span className="flex flex-col">
-              {data?.firstName} {data?.lastName}
+              {user?.firstName} {user?.lastName}
             </span>
             <Follow id={id} />
           </CardTitle>

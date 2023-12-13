@@ -5,12 +5,21 @@ import Link from "next/link";
 import { useAuthStore } from "@/app/stores/authStore";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/app/components/ui/dropdown-menu";
 
 export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const logout = useAuthStore((state) => state.logout);
   const router = useRouter();
+
   return (
     <>
       {!isLoggedIn ? (
@@ -24,7 +33,21 @@ export default function Profile() {
         </>
       ) : (
         <>
-          <Link href={`/profile/${user.id}`}>{user.fullName}</Link>
+          <Link href={"/"}>
+            <Button variant={"ghost"}>Explore Jobs</Button>
+          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger>{user.fullName}</DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem className="cursor-pointer">
+                <Link href={`/profile/${user.id}`}>Profile</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>My Companies</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button
             variant={"outline"}
             onClick={() => {

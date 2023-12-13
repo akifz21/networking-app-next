@@ -1,6 +1,6 @@
 import React from "react";
 import { Post } from "../types";
-import { ConstructionIcon, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import PostCard from "./post-card";
 
 type Props = {
