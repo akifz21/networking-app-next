@@ -1,5 +1,7 @@
 export interface Company extends CompanyRequest {
   id: string;
+  ownerFirstName: string;
+  ownerLastName: string;
 }
 
 export interface CompanyRequest {

@@ -8,24 +8,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { User } from "@/app/types";
+import { Company } from "@/app/types";
 import React from "react";
 import useSWR from "swr";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
-import Message from "./message";
-
-const Follow = dynamic(() => import("./follow"), {
-  ssr: false,
-  loading: () => <Loader2 strokeWidth={3} className="animate-spin" />,
-});
+import Link from "next/link";
 
 type Props = {
   id: string;
 };
 
-export default function ProfileCard({ id }: Props) {
-  const { data: user, isLoading, error } = useSWR<User>(`/users/${id}`, fetcher);
+export default function CompanyCard({ id }: Props) {
+  const { data: company, isLoading, error } = useSWR<Company>(`/companies/${id}`, fetcher);
 
   if (error) return <>{error?.message}</>;
 
@@ -36,20 +31,17 @@ export default function ProfileCard({ id }: Props) {
           <CardTitle className="flex flex-row gap-4 items-center">
             <Avatar>
               <AvatarImage src="" alt="user profile" />
-              <AvatarFallback>
-                {user?.firstName.charAt(0) + "" + user?.lastName.charAt(0)}
-              </AvatarFallback>
+              <AvatarFallback>{company?.name.charAt(0)}</AvatarFallback>
             </Avatar>
-            <span className="flex flex-col">
-              {user?.firstName} {user?.lastName}
-            </span>
-            <Follow id={id} />
-            <Message id={id} />
+            <span className="flex flex-col">{company?.name}</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, eligendi.
+            <Link href={`/profile/${company?.ownerId}`}>
+              Owner: {company?.ownerFirstName} {company?.ownerLastName}
+            </Link>
+            <div>{company?.description}</div>
           </CardDescription>
         </CardContent>
       </Card>

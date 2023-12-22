@@ -45,7 +45,9 @@ export default function Profile() {
               <DropdownMenuItem className="cursor-pointer">
                 <Link href={`/profile/${user.id}`}>Profile</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>My Companies</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/company/owner/${user.id}`}>My Companies</Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Button
