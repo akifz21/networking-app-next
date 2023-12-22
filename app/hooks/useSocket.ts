@@ -1,12 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
-import { useAuthStore } from "@/app/stores/authStore";
+import { useEffect, useState } from "react";
 import SockJS from "sockjs-client";
 
-export default function Chat() {
-  const user = useAuthStore((state) => state.user);
+export function useSocket() {
   const [client, setClient] = useState<Client>();
 
   useEffect(() => {
@@ -31,13 +27,5 @@ export default function Chat() {
     };
   }, []);
 
-  return (
-    <div className="flex pt-24">
-      <button
-        onClick={() => client?.publish({ destination: "/app/message", body: "Message Sended" })}
-      >
-        Gönder
-      </button>
-    </div>
-  );
+  return client;
 }

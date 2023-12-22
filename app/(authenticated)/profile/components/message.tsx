@@ -13,7 +13,8 @@ import { Input } from "@/app/components/ui/input";
 import { useAuthStore } from "@/app/stores/authStore";
 import { createRoom } from "@/app/api/room";
 import toast from "react-hot-toast";
-import { Card, CardHeader, CardTitle } from "@/app/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
+import { useSocket } from "@/app/hooks/useSocket";
 
 type Props = {
   id: string;
@@ -44,7 +45,7 @@ export default function Message({ id }: Props) {
             <MessageCircle />
           </Button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent className="flex flex-col gap-4">
           <SheetHeader>
             <SheetTitle>Messages</SheetTitle>
           </SheetHeader>
@@ -66,8 +67,9 @@ export default function Message({ id }: Props) {
           <div className="flex flex-col">
             <Card>
               <CardHeader>
-                <CardTitle></CardTitle>
+                <CardTitle className="text-lg">User Name</CardTitle>
               </CardHeader>
+              <CardContent>Text</CardContent>
             </Card>
           </div>
         </SheetContent>
