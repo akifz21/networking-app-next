@@ -20,6 +20,9 @@ export default function CompanyCreate() {
     description: "",
     name: "",
     ownerId: user.id || "",
+    address: "",
+    email: "",
+    website: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -64,6 +67,32 @@ export default function CompanyCreate() {
           name="name"
           type="text"
           value={form.name}
+          onChange={handleChange}
+        />
+
+        <Input
+          id="email"
+          placeholder="E-mail"
+          name="email"
+          type="text"
+          value={form.email}
+          onChange={handleChange}
+        />
+
+        <Input
+          id="website"
+          placeholder="Website"
+          name="website"
+          type="text"
+          value={form.website}
+          onChange={handleChange}
+        />
+
+        <Textarea
+          id="address"
+          placeholder="Address"
+          name="address"
+          value={form.address}
           onChange={handleChange}
         />
 

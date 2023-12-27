@@ -47,12 +47,15 @@ export default function Message({ id, name }: Props) {
       const socket = new SockJS("http://localhost:8100/ws");
       const stompClient = new Client({
         webSocketFactory: () => socket,
+        reconnectDelay: 5000,
+        heartbeatIncoming: 4000,
+        heartbeatOutgoing: 4000,
       });
 
       stompClient.onConnect = (frame) => {
         console.log("Connected:", frame, roomId);
         stompClient.subscribe(`/topic/messages/${roomId}`, (message) => {
-          setMessages((prevMessages) => [...prevMessages, JSON.parse(message.body)]);
+          setMessages((prevMessages) => [JSON.parse(message.body), ...prevMessages]);
         });
       };
 
