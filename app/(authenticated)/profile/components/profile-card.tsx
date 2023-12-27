@@ -44,7 +44,7 @@ export default function ProfileCard({ id }: Props) {
               {user?.firstName} {user?.lastName}
             </span>
             <Follow id={id} />
-            <Message id={id} />
+            <Message id={id} name={user?.firstName + " " + user?.lastName} />
           </CardTitle>
         </CardHeader>
         <CardContent>

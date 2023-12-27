@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
-import { Loader2, MessageCircle, Send } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { Loader, Loader2, MessageCircle, Send } from "lucide-react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -16,17 +16,32 @@ import toast from "react-hot-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
+import { Message as MessageType } from "@/app/types";
+import useSWR from "swr";
+import { fetcher } from "@/app/api/axiosInstance";
 
 type Props = {
   id: string;
+  name: string;
 };
 
-export default function Message({ id }: Props) {
+export default function Message({ id, name }: Props) {
   const user = useAuthStore((state) => state.user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<string | null>(null);
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messageToSend, setMessageToSend] = useState<string>();
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const {
+    data: oldMessages,
+    isLoading: oldMessagesLoading,
+    error: oldMessagesError,
+  } = useSWR<MessageType[]>(`/messages/${roomId}`, fetcher, {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+  });
   const [client, setClient] = useState<Client>();
+
   useEffect(() => {
     if (roomId) {
       const socket = new SockJS("http://localhost:8100/ws");
@@ -67,7 +82,7 @@ export default function Message({ id }: Props) {
             <MessageCircle />
           </Button>
         </SheetTrigger>
-        <SheetContent className="flex flex-col gap-4">
+        <SheetContent className="flex flex-col gap-4 overflow-y-scroll">
           <SheetHeader>
             <SheetTitle>Messages</SheetTitle>
           </SheetHeader>
@@ -78,12 +93,16 @@ export default function Message({ id }: Props) {
           ) : (
             <div className="flex flex-col w-full gap-4">
               <div className="flex flex-col gap-4 items-center">
-                <Input id="name" className="col-span-3" />
+                <Input
+                  id="name"
+                  className="col-span-3"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setMessageToSend(e.target.value)}
+                />
                 <Button
                   onClick={() => {
                     client?.publish({
                       destination: `/app/message/${roomId}`,
-                      body: JSON.stringify({ sender: user.id, content: "Textddttt" }),
+                      body: JSON.stringify({ senderId: user.id, message: messageToSend }),
                     });
                   }}
                   className="flex flex-row items-center gap-2"
@@ -94,16 +113,47 @@ export default function Message({ id }: Props) {
               </div>
             </div>
           )}
-          <div className="flex flex-col">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">User Name</CardTitle>
-              </CardHeader>
-              <CardContent>Text</CardContent>
-            </Card>
+          <div className="flex flex-col gap-2">
+            {messages?.map((message, i) => (
+              <MessageCard currentUserId={user.id} name={name} message={message} key={i} />
+            ))}
+          </div>
+          <div className="flex flex-col   gap-2">
+            {oldMessagesLoading ? (
+              <>
+                <Loader2 className="animate-spin" />
+              </>
+            ) : (
+              <>
+                {oldMessages?.map((message, i) => (
+                  <MessageCard currentUserId={user.id} name={name} message={message} key={i} />
+                ))}
+              </>
+            )}
           </div>
         </SheetContent>
       </Sheet>
     </div>
+  );
+}
+
+function MessageCard({
+  message,
+  currentUserId,
+  name,
+}: {
+  message: MessageType;
+  currentUserId: string;
+  name?: string;
+}) {
+  return (
+    <Card className="flex flex-col gap-2">
+      <CardHeader className="py-0 ">
+        <CardTitle className="text-md">
+          {message?.senderId == currentUserId ? "Me" : name}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="py-0">{message?.message}</CardContent>
+    </Card>
   );
 }
