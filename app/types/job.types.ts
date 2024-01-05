@@ -6,4 +6,5 @@ export type JobRequest = {
 
 export type Job = JobRequest & {
   id: string;
+  companyName: string;
 };

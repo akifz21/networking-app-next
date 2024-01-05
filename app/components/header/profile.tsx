@@ -33,7 +33,7 @@ export default function Profile() {
         </>
       ) : (
         <>
-          <Link href={"/"}>
+          <Link href={"/jobs"}>
             <Button variant={"ghost"}>Explore Jobs</Button>
           </Link>
           <DropdownMenu>
