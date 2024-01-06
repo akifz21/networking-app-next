@@ -16,6 +16,7 @@ import { Eye, Loader2, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
+import { ShareJob } from "./components/share-job";
 
 type Props = {};
 
@@ -37,7 +38,7 @@ export default function OwnerCompanies({}: Props) {
           <TableRow className="font-bold ">
             <TableHead>Name</TableHead>
             <TableHead>Workers</TableHead>
-            <TableHead>Update</TableHead>
+            <TableHead>Share Job</TableHead>
             <TableHead>Delete</TableHead>
           </TableRow>
         </TableHeader>
@@ -53,9 +54,7 @@ export default function OwnerCompanies({}: Props) {
                 </Button>
               </TableCell>
               <TableCell>
-                <Button>
-                  <Pencil strokeWidth={3} />
-                </Button>
+                <ShareJob companyId={company.id} />
               </TableCell>
               <TableCell>
                 <Button>
