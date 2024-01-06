@@ -1,18 +1,21 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
+import { formatDateForShow } from "@/app/lib/utils";
 import { Job } from "@/app/types";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
   job: Job;
+  setJobDetails: Dispatch<SetStateAction<Job>>;
 };
 
-export default function JobCard({ job }: Props) {
+export default function JobCard({ job, setJobDetails }: Props) {
   return (
-    <Card>
+    <Card className="cursor-pointer" onClick={() => setJobDetails(job)}>
       <CardHeader>
-        <CardTitle>Test</CardTitle>
-        <CardDescription>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus exercitationem, sed ad
-          ipsum numquam repellat fugiat ipsam harum accusantium atque?
+        <CardTitle>{job.title}</CardTitle>
+        <CardDescription className="flex flex-col gap-2">
+          <>{formatDateForShow(job.endDate)}</>
+          <>{job.companyName}</>
         </CardDescription>
       </CardHeader>
     </Card>

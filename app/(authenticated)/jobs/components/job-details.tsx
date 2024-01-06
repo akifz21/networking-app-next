@@ -24,9 +24,7 @@ export default function JobDetails({ job }: Props) {
               <Button>Apply</Button>
             </div>
           </CardTitle>
-          <CardDescription className="flex flex-col ">
-            <div>{job.companyName}</div>
-          </CardDescription>
+          <CardDescription className="flex flex-col ">{job.companyName}</CardDescription>
         </CardHeader>
       </Card>
       <Card>

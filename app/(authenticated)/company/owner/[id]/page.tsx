@@ -44,7 +44,7 @@ export default function OwnerCompanies({}: Props) {
         </TableHeader>
         <TableBody>
           {data?.map((company) => (
-            <TableRow className="font-medium">
+            <TableRow key={company.id} className="font-medium">
               <TableCell>
                 <Link href={`/company/${company.id}`}>{company.name}</Link>
               </TableCell>

@@ -5,6 +5,7 @@ import { Job } from "@/app/types";
 import { fetcher } from "@/app/api/axiosInstance";
 import { useState } from "react";
 import JobDetails from "./components/job-details";
+import { Loader2 } from "lucide-react";
 
 export default function Jobs() {
   const { data, isLoading, error } = useSWR<Job[]>("/jobs", fetcher);
@@ -14,13 +15,26 @@ export default function Jobs() {
     id: "",
     title: "",
     companyName: "",
+    endDate: "",
   });
+
+  if (isLoading) {
+    return (
+      <center className="mt-20">
+        <Loader2 size={60} strokeWidth={3} className="animate-spin  " />
+      </center>
+    );
+  }
+
+  if (error) {
+    return <>{error?.message}</>;
+  }
 
   return (
     <div className="flex flex-row min-h-screen gap-4 w-full justify-betweenş pt-24 px-24">
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col gap-2 ">
         {data?.map((job) => (
-          <JobCard job={job} key={job.id} />
+          <JobCard setJobDetails={setJobDetails} job={job} key={job.id} />
         ))}
       </div>
       <div className="flex-1 border-l-2 pl-4  h-full">
