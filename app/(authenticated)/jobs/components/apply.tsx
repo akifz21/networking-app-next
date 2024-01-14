@@ -1,9 +1,13 @@
 "use client";
 
-import { applyJob } from "@/app/api/job-application";
+import { fetcher } from "@/app/api/axiosInstance";
+import { applyJob, deleteApplication } from "@/app/api/job-application";
 import { Button } from "@/app/components/ui/button";
 import { useAuthStore } from "@/app/stores/authStore";
+import { Loader2 } from "lucide-react";
+import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
+import useSWR from "swr";
 
 type Props = {
   jobId: string;
@@ -11,11 +15,20 @@ type Props = {
 
 export default function Apply({ jobId }: Props) {
   const user = useAuthStore((state) => state.user);
+  const { data: isApplied, isLoading: loadingApplied } = useSWR(
+    `/jobs/applications/check?userId=${user.id}&jobId=${jobId}`,
+    fetcher
+  );
 
-  const handleApply = async () => {
+  const toggleApply = async () => {
     try {
-      const res = await applyJob({ jobId: jobId, userId: user.id });
-      toast.success(res.data);
+      if (isApplied) {
+        const res = await deleteApplication(user.id, jobId);
+        toast.success(res.data);
+      } else {
+        const res = await applyJob({ jobId: jobId, userId: user.id });
+        toast.success(res.data);
+      }
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -23,7 +36,19 @@ export default function Apply({ jobId }: Props) {
 
   return (
     <div>
-      <Button onClick={() => handleApply()}>Apply</Button>
+      {loadingApplied ? (
+        <Loader2 className="animate-spin" />
+      ) : (
+        <>
+          {isApplied ? (
+            <Button onClick={() => toggleApply()} variant={"secondary"}>
+              Undo Application
+            </Button>
+          ) : (
+            <Button onClick={() => toggleApply()}>Apply</Button>
+          )}
+        </>
+      )}
     </div>
   );
 }
