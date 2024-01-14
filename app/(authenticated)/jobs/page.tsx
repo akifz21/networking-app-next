@@ -33,13 +33,14 @@ export default function Jobs() {
   return (
     <div className="flex flex-row min-h-screen gap-4 w-full justify-betweenş pt-24 px-24">
       <div className="flex-1 flex flex-col gap-2 ">
+        <h1 className="self-center text-4xl font-bold">Job List</h1>
         {data?.map((job) => (
           <JobCard setJobDetails={setJobDetails} job={job} key={job.id} />
         ))}
       </div>
       <div className="flex-1 border-l-2 pl-4  h-full">
         <div className="flex flex-col gap-2">
-          <JobDetails job={jobDetail} />
+          {jobDetail.description !== "" && <JobDetails job={jobDetail} />}
         </div>
       </div>
     </div>

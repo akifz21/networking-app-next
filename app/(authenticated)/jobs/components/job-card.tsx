@@ -14,8 +14,8 @@ export default function JobCard({ job, setJobDetails }: Props) {
       <CardHeader>
         <CardTitle>{job.title}</CardTitle>
         <CardDescription className="flex flex-col gap-2">
-          <>{formatDateForShow(job.endDate)}</>
-          <>{job.companyName}</>
+          <span>{formatDateForShow(job.endDate)}</span>
+          <span>{job.companyName}</span>
         </CardDescription>
       </CardHeader>
     </Card>
