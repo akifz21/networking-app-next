@@ -22,7 +22,7 @@ type Props = {};
 
 export default function OwnerCompanies({}: Props) {
   const user = useAuthStore((state) => state.user);
-  const { data, isLoading, error } = useSWR<Company[]>(`/companies/owner/${user.id}`, fetcher);
+  const { data, isLoading, error } = useSWR<Company[]>(`/company/owner/${user.id}`, fetcher);
 
   if (isLoading) return <Loader2 strokeWidth={3} className="animate-spin pt-24" />;
   if (error) return <div className="pt-24">{error.message}</div>;

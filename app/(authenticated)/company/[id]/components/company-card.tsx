@@ -20,7 +20,7 @@ type Props = {
 };
 
 export default function CompanyCard({ id }: Props) {
-  const { data: company, isLoading, error } = useSWR<Company>(`/companies/${id}`, fetcher);
+  const { data: company, isLoading, error } = useSWR<Company>(`/company/${id}`, fetcher);
 
   if (error) return <>{error?.message}</>;
 

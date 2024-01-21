@@ -10,4 +10,7 @@ const getApplicationByUser = (id: string) => axios.get(`/jobs/applicaitons/user/
 
 const getApplicationByJob = (id: string) => axios.get(`/jobs/applications/job/${id}`);
 
-export { applyJob, getApplicationByUser, getApplicationByJob, deleteApplication };
+const checkIfApplied = (userId: string, jobId: string) =>
+  axios.get(`/jobs/applications/check?userId=${userId}&jobId=&${jobId}}`);
+
+export { applyJob, getApplicationByUser, getApplicationByJob, deleteApplication, checkIfApplied };
