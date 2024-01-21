@@ -1,13 +1,7 @@
 "use client";
 import { fetcher } from "@/app/api/axiosInstance";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/app/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Company } from "@/app/types";
 import React from "react";
 import useSWR from "swr";
@@ -41,7 +35,7 @@ export default function CompanyCard({ id }: Props) {
             <Link href={`/profile/${company?.ownerId}`}>
               Owner: {company?.ownerFirstName} {company?.ownerLastName}
             </Link>
-            <div>{company?.description}</div>
+            <span>{company?.description}</span>
           </CardDescription>
         </CardContent>
       </Card>

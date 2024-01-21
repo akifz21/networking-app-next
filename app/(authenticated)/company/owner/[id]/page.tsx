@@ -1,15 +1,7 @@
 "use client";
 import { fetcher } from "@/app/api/axiosInstance";
 import { Button } from "@/app/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/app/components/ui/table";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/app/components/ui/table";
 import { useAuthStore } from "@/app/stores/authStore";
 import { Company } from "@/app/types/company.types";
 import { Eye, Loader2, Pencil, Trash } from "lucide-react";
@@ -39,6 +31,7 @@ export default function OwnerCompanies({}: Props) {
             <TableHead>Name</TableHead>
             <TableHead>Workers</TableHead>
             <TableHead>Share Job</TableHead>
+            <TableHead>Open Jobs</TableHead>
             <TableHead>Delete</TableHead>
           </TableRow>
         </TableHeader>
@@ -55,6 +48,13 @@ export default function OwnerCompanies({}: Props) {
               </TableCell>
               <TableCell>
                 <ShareJob companyId={company.id} />
+              </TableCell>
+              <TableCell>
+                <Link href={"/co"}>
+                  <Button>
+                    <Eye />
+                  </Button>
+                </Link>
               </TableCell>
               <TableCell>
                 <Button>
