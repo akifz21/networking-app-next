@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app
 import { Job } from "@/app/types";
 import Link from "next/link";
 import useSWR from "swr";
+import Applications from "./applications";
 
 type Props = {
   companyId: string;
@@ -24,7 +25,7 @@ const JobCard = ({ job }: { job: Job }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-row  py-0 items-center">
-        <Button>Applications</Button>
+        <Applications companyId={job.companyId} jobId={job.id} />
       </CardContent>
     </Card>
   );

@@ -31,7 +31,7 @@ export default function CompanyCard({ id }: Props) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <CardDescription>
+          <CardDescription className="flex flex-col">
             <Link href={`/profile/${company?.ownerId}`}>
               Owner: {company?.ownerFirstName} {company?.ownerLastName}
             </Link>

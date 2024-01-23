@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/ta
 import React from "react";
 import CompanyCard from "./components/company-card";
 import JobList from "./components/job-list";
+import EmployeeList from "./components/employee-list";
 
 type Props = {
   params: { id: string };
@@ -23,7 +24,9 @@ export default function CompanyPage({ params }: Props) {
         <TabsContent value="jobs">
           <JobList companyId={params.id} />
         </TabsContent>
-        <TabsContent value="workers"></TabsContent>
+        <TabsContent value="workers">
+          <EmployeeList id={params.id} />
+        </TabsContent>
       </Tabs>
     </div>
   );

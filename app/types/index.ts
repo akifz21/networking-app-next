@@ -7,3 +7,4 @@ export * from "./company.types";
 export * from "./job.types";
 export * from "./room.types";
 export * from "./message.types";
+export * from "./employee.types";
