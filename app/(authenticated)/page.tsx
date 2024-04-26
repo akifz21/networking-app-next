@@ -1,5 +1,5 @@
 "use client";
-import PostDialog from "../components/post-share-dialog";
+import PostDialog from "../components/header/post-share-dialog";
 import PostList from "../components/post-list";
 import useSWR from "swr";
 import { Post } from "../types";

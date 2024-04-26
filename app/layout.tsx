@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cn("min-h-screen bg-background  antialiased", inter.className)}>
         <Toaster />
         <Navbar theme={theme} />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
