@@ -32,4 +32,6 @@ instance.interceptors.response.use(
 
 const fetcher = (url: string) => instance.get(url).then((res) => res.data);
 
-export { instance, fetcher };
+const defaultFetcher = (url: string) => axios.get(url).then((res) => res.data);
+
+export { instance, fetcher, defaultFetcher };

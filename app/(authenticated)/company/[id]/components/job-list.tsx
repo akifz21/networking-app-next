@@ -2,21 +2,28 @@
 import { fetcher } from "@/app/api/axiosInstance";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { Job } from "@/app/types";
+import { Company, Job } from "@/app/types";
 import Link from "next/link";
 import useSWR from "swr";
 import Applications from "./applications";
+import { useAuthStore } from "@/app/stores/authStore";
 
 type Props = {
-  companyId: string;
+  company: Company | undefined;
 };
 
-export default function JobList({ companyId }: Props) {
-  const { data, isLoading, error } = useSWR<Job[]>(`/jobs/company/${companyId}`, fetcher);
-  return <div className="flex flex-col gap-4">{data?.map((job) => <JobCard key={job.id} job={job} />)}</div>;
+export default function JobList({ company }: Props) {
+  const { data, isLoading, error } = useSWR<Job[]>(`/jobs/company/${company?.id}`, fetcher);
+  return (
+    <div className="flex flex-col gap-4">
+      {data?.map((job) => <JobCard key={job.id} ownerId={company?.ownerId} job={job} />)}
+    </div>
+  );
 }
 
-const JobCard = ({ job }: { job: Job }) => {
+const JobCard = ({ job, ownerId }: { job: Job; ownerId: string | undefined }) => {
+  const user = useAuthStore((state) => state.user);
+
   return (
     <Card className="flex flex-row justify-between items-center">
       <CardHeader>
@@ -25,7 +32,7 @@ const JobCard = ({ job }: { job: Job }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-row  py-0 items-center">
-        <Applications companyId={job.companyId} jobId={job.id} />
+        {user.id === ownerId && <Applications companyId={job.companyId} jobId={job.id} />}
       </CardContent>
     </Card>
   );

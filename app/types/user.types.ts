@@ -18,4 +18,5 @@ export interface UserPayload {
 
 export interface User extends UserRegister {
   id: string;
+  description: string;
 }

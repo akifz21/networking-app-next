@@ -32,7 +32,7 @@ export default function Login() {
       setIsLoading(true);
       const res = await login(formData);
       loginState(res?.data);
-      toast.success("Login Successfully.");
+      toast.success("Giriş Başarılı.");
       router.push("/");
     } catch (error: any) {
       toast.error(error?.message);
@@ -44,7 +44,7 @@ export default function Login() {
   return (
     <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">Login to your account</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Giriş yap</h1>
       </div>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
@@ -61,19 +61,17 @@ export default function Login() {
           <div className="grid gap-1">
             <Input
               id="password"
-              placeholder="Password"
+              placeholder="Şifre"
               name="password"
               type="password"
               value={formData.password}
               onChange={handleChange}
             />
           </div>
-          <Button>
-            {isLoading ? <Loader2 strokeWidth={3} className="animate-spin" /> : "Login"}
-          </Button>
+          <Button>{isLoading ? <Loader2 strokeWidth={3} className="animate-spin" /> : "Giriş"}</Button>
         </div>
       </form>
-      <div className="relative">
+      {/* <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
@@ -83,7 +81,7 @@ export default function Login() {
       </div>
       <Button variant="outline" type="button">
         Github
-      </Button>
+      </Button> */}
     </div>
   );
 }

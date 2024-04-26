@@ -1,13 +1,7 @@
 "use client";
 import { fetcher } from "@/app/api/axiosInstance";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/app/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { User } from "@/app/types";
 import React from "react";
 import useSWR from "swr";
@@ -21,12 +15,12 @@ const Follow = dynamic(() => import("./follow"), {
 });
 
 type Props = {
+  user: User | undefined;
+  error: any;
   id: string;
 };
 
-export default function ProfileCard({ id }: Props) {
-  const { data: user, isLoading, error } = useSWR<User>(`/users/${id}`, fetcher);
-
+export default function ProfileCard({ user, error, id }: Props) {
   if (error) return <>{error?.message}</>;
 
   return (
@@ -36,9 +30,7 @@ export default function ProfileCard({ id }: Props) {
           <CardTitle className="flex flex-row gap-4 items-center">
             <Avatar>
               <AvatarImage src="" alt="user profile" />
-              <AvatarFallback>
-                {user?.firstName.charAt(0) + "" + user?.lastName.charAt(0)}
-              </AvatarFallback>
+              <AvatarFallback>{user?.firstName.charAt(0) + "" + user?.lastName.charAt(0)}</AvatarFallback>
             </Avatar>
             <span className="flex flex-col">
               {user?.firstName} {user?.lastName}
@@ -47,11 +39,6 @@ export default function ProfileCard({ id }: Props) {
             <Message id={id} name={user?.firstName + " " + user?.lastName} />
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <CardDescription>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, eligendi.
-          </CardDescription>
-        </CardContent>
       </Card>
     </div>
   );

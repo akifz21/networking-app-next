@@ -63,12 +63,12 @@ export default function PostDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="default">Share Post</Button>
+        <Button variant="default">Gönderi Paylaş</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[780px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Share a post</DialogTitle>
+            <DialogTitle>Gönderi paylaş</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col gap-4 py-4">
             <div>
@@ -82,7 +82,7 @@ export default function PostDialog() {
               />
             </div>
             <div className="flex flex-row items-center gap-2">
-              <Label>Images</Label>
+              <Label>Resimler</Label>
               <Input
                 id="file"
                 type="file"

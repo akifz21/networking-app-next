@@ -21,16 +21,12 @@ export default function PostList({ data, isLoading, error }: Props) {
   }
 
   if (data && data?.length <= 0) {
-    return <>This user has no posts.</>;
+    return <>Bu kullanıcının gönderisi yok.</>;
   }
 
   return (
     <div className="py-6">
-      <div className="flex flex-col gap-4">
-        {data?.map((post) => (
-          <PostCard post={post} key={post.id} />
-        ))}
-      </div>
+      <div className="flex flex-col gap-4">{data?.map((post) => <PostCard post={post} key={post.id} />)}</div>
     </div>
   );
 }

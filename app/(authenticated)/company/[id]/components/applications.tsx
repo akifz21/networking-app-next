@@ -2,6 +2,7 @@
 import { fetcher } from "@/app/api/axiosInstance";
 import { updateWorkers } from "@/app/api/company";
 import { addEmployee } from "@/app/api/employee";
+import { deleteApplication } from "@/app/api/job-application";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import {
@@ -15,6 +16,7 @@ import {
 import { formatDateForShow } from "@/app/lib/utils";
 import { JobApplication } from "@/app/types/job-application.types";
 import { Loader2 } from "lucide-react";
+import { Dispatch, SetStateAction, useState } from "react";
 import toast from "react-hot-toast";
 import useSWR from "swr";
 
@@ -25,15 +27,16 @@ type Props = {
 
 export default function Applications({ jobId, companyId }: Props) {
   const { data, isLoading, error } = useSWR<JobApplication[]>(`/jobs/applications/job/${jobId}`, fetcher);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Applications</Button>
+        <Button>Başvurular</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Application List</DialogTitle>
+          <DialogTitle>Başvuru listesi</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         {isLoading ? (
@@ -43,7 +46,7 @@ export default function Applications({ jobId, companyId }: Props) {
         ) : (
           <div className="flex flex-col">
             {data?.map((application) => (
-              <ApplicationCard key={application.id} companyId={companyId} application={application} />
+              <ApplicationCard setOpen={setOpen} key={application.id} companyId={companyId} application={application} />
             ))}
           </div>
         )}
@@ -52,11 +55,21 @@ export default function Applications({ jobId, companyId }: Props) {
   );
 }
 
-const ApplicationCard = ({ application, companyId }: { application: JobApplication; companyId: string }) => {
+const ApplicationCard = ({
+  application,
+  companyId,
+  setOpen,
+}: {
+  application: JobApplication;
+  companyId: string;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const handleApprove = async (userId: string) => {
     try {
       const res = await addEmployee({ companyId: companyId, userId: userId });
+      const deleteRes = await deleteApplication(application.userId, application.jobId);
       toast.success(res.data);
+      setOpen(!open);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -69,10 +82,10 @@ const ApplicationCard = ({ application, companyId }: { application: JobApplicati
           {application.userFirstName} {application.userLastName}
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-row text-sm items-center gap-4   py-0">
+      <CardContent className="flex flex-row text-sm items-center gap-4  py-4">
         <span>{formatDateForShow(application.createdDate, true)}</span>
         <Button onClick={() => handleApprove(application.userId)} size={"sm"} className="bg-green-600">
-          Approve
+          Onayla
         </Button>
       </CardContent>
     </Card>

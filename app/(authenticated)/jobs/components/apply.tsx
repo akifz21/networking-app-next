@@ -15,21 +15,22 @@ type Props = {
 
 export default function Apply({ jobId }: Props) {
   const user = useAuthStore((state) => state.user);
-  const { data: isApplied, isLoading: loadingApplied ,mutate} = useSWR(
-    `/jobs/applications/check?userId=${user.id}&jobId=${jobId}`,
-    fetcher
-  );
+  const {
+    data: isApplied,
+    isLoading: loadingApplied,
+    mutate,
+  } = useSWR(`/jobs/applications/check?userId=${user.id}&jobId=${jobId}`, fetcher);
 
   const toggleApply = async () => {
-  try {
-    if (isApplied) {
-      const res = await deleteApplication(user.id, jobId);
+    try {
+      if (isApplied) {
+        const res = await deleteApplication(user.id, jobId);
         toast.success(res.data);
-        mutate()
+        mutate();
       } else {
         const res = await applyJob({ jobId: jobId, userId: user.id });
         toast.success(res.data);
-        mutate()
+        mutate();
       }
     } catch (error: any) {
       toast.error(error?.message);
@@ -44,10 +45,10 @@ export default function Apply({ jobId }: Props) {
         <>
           {isApplied ? (
             <Button onClick={() => toggleApply()} variant={"secondary"}>
-              Undo Application
+              Başvuruyu Geri Al
             </Button>
           ) : (
-            <Button onClick={() => toggleApply()}>Apply</Button>
+            <Button onClick={() => toggleApply()}>Başvur</Button>
           )}
         </>
       )}

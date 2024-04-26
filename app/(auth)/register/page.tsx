@@ -30,7 +30,7 @@ export default function Register() {
     setIsLoading(true);
     try {
       const res = await register(formData);
-      toast.success("Register Successfully.");
+      toast.success("Kayıt Başarılı.");
       router.push("/login");
     } catch (error: any) {
       toast.error(error.message);
@@ -42,10 +42,7 @@ export default function Register() {
   return (
     <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
-        <p className="text-sm text-muted-foreground">
-          Enter your informations below to create your account
-        </p>
+        <h1 className="text-2xl font-semibold tracking-tight">Hesap Oluştur</h1>
       </div>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
@@ -97,7 +94,7 @@ export default function Register() {
               disabled={isLoading}
             />
           </div>
-          <Button disabled={isLoading}>Register</Button>
+          <Button disabled={isLoading}>Kayıt ol</Button>
         </div>
       </form>
       <div className="relative">

@@ -22,17 +22,15 @@ export default function OwnerCompanies({}: Props) {
   return (
     <div className="border-x min-h-screen flex flex-col pt-24 px-10 md:w-3/4 lg:w-1/2 w-full justify-start gap-4">
       <Link href="/company/create">
-        <Button>Register new Company</Button>
+        <Button>Şirketini Ekle</Button>
       </Link>
       <Table>
-        <TableCaption>A list of your companies.</TableCaption>
+        <TableCaption>Şirketlerinin Listesi</TableCaption>
         <TableHeader>
           <TableRow className="font-bold ">
-            <TableHead>Name</TableHead>
-            <TableHead>Workers</TableHead>
-            <TableHead>Share Job</TableHead>
-            <TableHead>Open Jobs</TableHead>
-            <TableHead>Delete</TableHead>
+            <TableHead>İsim</TableHead>
+            <TableHead>İş paylaş</TableHead>
+            <TableHead>Sil</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -41,21 +39,11 @@ export default function OwnerCompanies({}: Props) {
               <TableCell>
                 <Link href={`/company/${company.id}`}>{company.name}</Link>
               </TableCell>
-              <TableCell>
-                <Button>
-                  <Eye strokeWidth={3} />
-                </Button>
-              </TableCell>
+
               <TableCell>
                 <ShareJob companyId={company.id} />
               </TableCell>
-              <TableCell>
-                <Link href={"/co"}>
-                  <Button>
-                    <Eye />
-                  </Button>
-                </Link>
-              </TableCell>
+
               <TableCell>
                 <Button>
                   <Trash strokeWidth={3} />

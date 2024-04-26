@@ -10,12 +10,11 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
-  id: string;
+  company: Company | undefined;
+  error: any;
 };
 
-export default function CompanyCard({ id }: Props) {
-  const { data: company, isLoading, error } = useSWR<Company>(`/company/${id}`, fetcher);
-
+export default function CompanyCard({ company, error }: Props) {
   if (error) return <>{error?.message}</>;
 
   return (
@@ -33,9 +32,8 @@ export default function CompanyCard({ id }: Props) {
         <CardContent>
           <CardDescription className="flex flex-col">
             <Link href={`/profile/${company?.ownerId}`}>
-              Owner: {company?.ownerFirstName} {company?.ownerLastName}
+              Sahibi: {company?.ownerFirstName} {company?.ownerLastName}
             </Link>
-            <span>{company?.description}</span>
           </CardDescription>
         </CardContent>
       </Card>

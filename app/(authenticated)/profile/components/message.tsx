@@ -2,13 +2,7 @@
 import { Button } from "@/app/components/ui/button";
 import { Loader, Loader2, MessageCircle, Send } from "lucide-react";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/app/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/app/components/ui/sheet";
 import { Input } from "@/app/components/ui/input";
 import { useAuthStore } from "@/app/stores/authStore";
 import { createRoom } from "@/app/api/room";
@@ -87,7 +81,7 @@ export default function Message({ id, name }: Props) {
         </SheetTrigger>
         <SheetContent className="flex flex-col gap-4 overflow-y-scroll">
           <SheetHeader>
-            <SheetTitle>Messages</SheetTitle>
+            <SheetTitle>Mesajlar</SheetTitle>
           </SheetHeader>
           {isLoading ? (
             <>
@@ -140,21 +134,11 @@ export default function Message({ id, name }: Props) {
   );
 }
 
-function MessageCard({
-  message,
-  currentUserId,
-  name,
-}: {
-  message: MessageType;
-  currentUserId: string;
-  name?: string;
-}) {
+function MessageCard({ message, currentUserId, name }: { message: MessageType; currentUserId: string; name?: string }) {
   return (
     <Card className="flex flex-col gap-2">
       <CardHeader className="py-0 ">
-        <CardTitle className="text-md">
-          {message?.senderId == currentUserId ? "Me" : name}
-        </CardTitle>
+        <CardTitle className="text-md">{message?.senderId == currentUserId ? "Ben" : name}</CardTitle>
       </CardHeader>
       <CardContent className="py-0">{message?.message}</CardContent>
     </Card>

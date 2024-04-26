@@ -6,9 +6,10 @@ import { Dispatch, SetStateAction } from "react";
 type Props = {
   job: Job;
   setJobDetails: Dispatch<SetStateAction<Job>>;
+  score?: string;
 };
 
-export default function JobCard({ job, setJobDetails }: Props) {
+export default function JobCard({ job, setJobDetails, score }: Props) {
   return (
     <Card className="cursor-pointer" onClick={() => setJobDetails(job)}>
       <CardHeader>
@@ -16,6 +17,7 @@ export default function JobCard({ job, setJobDetails }: Props) {
         <CardDescription className="flex flex-col gap-2">
           <span>{formatDateForShow(job.endDate)}</span>
           <span>{job.companyName}</span>
+          {score && <span>Uyumluluk : {score}</span>}
         </CardDescription>
       </CardHeader>
     </Card>

@@ -46,38 +46,14 @@ export default function CompanyCreate() {
   return (
     <div className="container relative h-screen flex-col items-center justify-center w-full md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <div className="relative hidden  h-full  items-center justify-center flex-col filter   lg:flex">
-        <Image
-          alt=""
-          src={"/company2.jpg"}
-          className="blur-sm"
-          objectFit="cover"
-          objectPosition="center"
-          fill
-        />
-        <h1 className="absolute text-8xl font-bold text-black">Register Your Company</h1>
+        <Image alt="" src={"/company2.jpg"} className="blur-sm" objectFit="cover" objectPosition="center" fill />
+        <h1 className="absolute text-8xl font-bold text-black">Şirketini Oluştur</h1>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 items-center w-full justify-center h-full lg:px-8"
-      >
-        <h1 className="font-bold lg:hidden text-4xl ">Register Your Company</h1>
-        <Input
-          id="name"
-          placeholder="Name"
-          name="name"
-          type="text"
-          value={form.name}
-          onChange={handleChange}
-        />
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center w-full justify-center h-full lg:px-8">
+        <h1 className="font-bold lg:hidden text-4xl ">Şirketini Oluştur</h1>
+        <Input id="name" placeholder="Name" name="name" type="text" value={form.name} onChange={handleChange} />
 
-        <Input
-          id="email"
-          placeholder="E-mail"
-          name="email"
-          type="text"
-          value={form.email}
-          onChange={handleChange}
-        />
+        <Input id="email" placeholder="E-mail" name="email" type="text" value={form.email} onChange={handleChange} />
 
         <Input
           id="website"
@@ -88,13 +64,7 @@ export default function CompanyCreate() {
           onChange={handleChange}
         />
 
-        <Textarea
-          id="address"
-          placeholder="Address"
-          name="address"
-          value={form.address}
-          onChange={handleChange}
-        />
+        <Textarea id="address" placeholder="Address" name="address" value={form.address} onChange={handleChange} />
 
         <Textarea
           id="description"

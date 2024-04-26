@@ -25,28 +25,31 @@ export default function Profile() {
       {!isLoggedIn ? (
         <>
           <Link href={"/login"}>
-            <Button>Login</Button>
+            <Button>Giriş Yap</Button>
           </Link>
           <Link href={"/register"}>
-            <Button variant={"outline"}>Register</Button>
+            <Button variant={"outline"}>Kayıt Ol</Button>
           </Link>
         </>
       ) : (
         <>
           <Link href={"/jobs"}>
-            <Button variant={"ghost"}>Explore Jobs</Button>
+            <Button variant={"ghost"}>İş bul</Button>
+          </Link>
+          <Link href={"/jobs/recommendations"}>
+            <Button variant={"ghost"}>İş Önerileri</Button>
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger>{user.fullName}</DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>Hesabım</DropdownMenuLabel>
               <DropdownMenuSeparator />
 
               <DropdownMenuItem className="cursor-pointer">
-                <Link href={`/profile/${user.id}`}>Profile</Link>
+                <Link href={`/profile/${user.id}`}>Profil</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/company/owner/${user.id}`}>My Companies</Link>
+                <Link href={`/company/owner/${user.id}`}>Şirketlerim</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -58,7 +61,7 @@ export default function Profile() {
               toast.success("Logged out. ");
             }}
           >
-            Logout
+            Çıkış yap
           </Button>
         </>
       )}

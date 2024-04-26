@@ -1,12 +1,6 @@
 import { addJob } from "@/app/api/job";
 import { Button } from "@/app/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/app/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Textarea } from "@/app/components/ui/textarea";
@@ -50,25 +44,14 @@ export function ShareJob({ companyId }: Props) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Share Job</DialogTitle>
+          <DialogTitle>İş Paylaş</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
-          <Input onChange={handleChange} name="title" id="title" placeholder="Title" type="text" />
-          <Textarea
-            onChange={handleChange}
-            name="description"
-            placeholder="Description"
-            id="description"
-          />
+          <Input onChange={handleChange} name="title" id="title" placeholder="İsim" type="text" />
+          <Textarea onChange={handleChange} name="description" placeholder="Açıklama" id="description" />
           <div className="flex flex-col items-start gap-2">
-            <Label>End Date: </Label>
-            <Input
-              onChange={handleChange}
-              name="endDate"
-              id="endDate"
-              type="datetime-local"
-              placeholder="End date"
-            />
+            <Label>Bitiş Tarihi: </Label>
+            <Input onChange={handleChange} name="endDate" id="endDate" type="datetime-local" placeholder="End date" />
           </div>
           <Button type="submit">Submit</Button>
         </form>

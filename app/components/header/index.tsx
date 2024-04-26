@@ -15,7 +15,7 @@ export default function Navbar({ theme }: Props) {
   return (
     <header className="flex flex-row fixed bg-background z-50 shadow-lg top-0 w-full h-20 items-center justify-between px-20">
       <Link className="font-bold" href={"/"}>
-        LOGO
+        Anasayfa
       </Link>
       <div className="flex flex-row gap-4 items-center">
         <Profile />

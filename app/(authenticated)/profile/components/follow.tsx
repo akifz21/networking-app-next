@@ -36,7 +36,7 @@ export default function Follow({ id }: Props) {
   return (
     <>
       {isOwner ? (
-        <Button>Edit</Button>
+        <></>
       ) : (
         <Button
           disabled={isLoading}
