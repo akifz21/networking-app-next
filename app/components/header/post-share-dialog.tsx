@@ -9,12 +9,12 @@ import {
   DialogTrigger,
 } from "@/app/components/ui/dialog";
 import { Input } from "@/app/components/ui/input";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "../ui/textarea";
 import { Label } from "@radix-ui/react-label";
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import { postAdd } from "@/app/api/post";
 import { useAuthStore } from "@/app/stores/authStore";
-import { Loader2 } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import toast from "react-hot-toast";
 import { mutate } from "swr";
 
@@ -63,7 +63,9 @@ export default function PostDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="default">Gönderi Paylaş</Button>
+        <Button variant="ghost" className="w-16 h-16 opacity-60 hover:opacity-100" size={"icon"}>
+          <Plus size={32} />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[780px]">
         <form onSubmit={handleSubmit}>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { MoonStar, Sun } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const DarkModeToggle = ({ theme }: { theme: string }) => {
   const [_theme, setTheme] = useState(theme);
@@ -19,14 +20,20 @@ const DarkModeToggle = ({ theme }: { theme: string }) => {
   };
 
   return (
-    <Button
-      size={"icon"}
-      variant={"outline"}
-      onClick={() => toogleTheme()}
-      key={_theme == "dark" ? "dark-icon" : "light-icon"}
-    >
-      {_theme == "dark" ? <MoonStar /> : <Sun />}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          size={"icon"}
+          variant={"ghost"}
+          onClick={() => toogleTheme()}
+          className="w-12 h-12 opacity-60 hover:opacity-100"
+          key={_theme == "dark" ? "dark-icon" : "light-icon"}
+        >
+          {_theme == "dark" ? <MoonStar size={32} /> : <Sun size={32} />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Toggle Theme</TooltipContent>
+    </Tooltip>
   );
 };
 
