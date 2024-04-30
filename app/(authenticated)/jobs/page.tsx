@@ -31,8 +31,8 @@ export default function Jobs() {
   }
 
   return (
-    <div className="flex flex-row min-h-screen gap-4 w-full justify-betweenş pt-24 px-24">
-      <div className="flex-1 flex flex-col gap-2 ">
+    <div className="flex flex-row h-screen max-h-screen gap-4 w-full justify-between pt-24 px-24">
+      <div className="flex-1 flex flex-col gap-2 overflow-y-scroll">
         <h1 className="self-center text-4xl font-bold">İş ilanları</h1>
         {data?.map((job) => <JobCard setJobDetails={setJobDetails} job={job} key={job.id} />)}
       </div>

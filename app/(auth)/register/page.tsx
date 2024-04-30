@@ -102,11 +102,11 @@ export default function Register() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+          <span className="bg-background px-2 text-muted-foreground">Hesabın var mı ?</span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        Github
+      <Button onClick={() => router.push("/login")} variant="outline" type="button" disabled={isLoading}>
+        Giriş yap
       </Button>
     </div>
   );

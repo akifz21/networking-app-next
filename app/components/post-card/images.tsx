@@ -2,6 +2,8 @@ import { usePostImages } from "@/app/hooks/usePostImages";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import { Card, CardContent } from "@/app/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/app/components/ui/carousel";
 
 type Props = {
   id: string;
@@ -19,23 +21,30 @@ export default function Images({ id }: Props) {
       </center>
     );
   }
+
   return (
-    <div>
+    <div className="items-center justify-center flex">
       {data && data.length > 0 && (
-        <div className="relative h-80 w-full">
-          <div className="grid grid-flow-col  gap-2 h-full">
+        <Carousel className="w-[90%]">
+          <CarouselContent className="h-80">
             {data.map((image) => (
-              <div key={image.id} className="relative h-full ">
+              <CarouselItem key={image.id} className="relative rounded-xl">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${image.id}`}
                   fill
                   alt={image.name}
-                  className="object-cover object-center rounded-sm "
+                  className="object-contain object-center rounded-xl"
                 />
-              </div>
+              </CarouselItem>
             ))}
-          </div>
-        </div>
+          </CarouselContent>
+          {data?.length > 1 && (
+            <>
+              <CarouselPrevious />
+              <CarouselNext />
+            </>
+          )}
+        </Carousel>
       )}
     </div>
   );
