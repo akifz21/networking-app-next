@@ -6,11 +6,13 @@ import NavItem from "./nav-item";
 import { Building, LogOut, User } from "lucide-react";
 import PostDialog from "./post-share-dialog";
 import { Button } from "../ui/button";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const logout = useAuthStore((state) => state.logout);
+  const { t } = useTranslation();
   const router = useRouter();
 
   return (

@@ -1,3 +1,38 @@
 {
-    "hello":"Hello"
+    "login": {
+        "title": "Login",
+        "email": "E-Mail",
+        "passwordPlaceholder": "Password",
+        "buttonText": "Login",
+        "noAccount": "Don't have an account?",
+        "registerButtonText": "Register"
+    },
+    "register": {
+        "title": "Create an Account",
+        "firstNamePlaceholder": "First Name",
+        "lastNamePlaceholder": "Last Name",
+        "email": "E-Mail",
+        "passwordPlaceholder": "Password",
+        "registerButtonText": "Register",
+        "haveAccount": "Already have an account?",
+        "loginButtonText": "Log In"
+    },
+    "companyPage": {
+        "aboutTab": "About",
+        "jobsTab": "Job Listings",
+        "workersTab": "Employees",
+        "createCompany": "Create Company",
+        "companyList": "Company List",
+        "shareJob": "Share Job",
+        "applications": "Applications",
+        "applicationList": "Application List",
+        "owner": "Owner"
+    },
+    "email": "E-Mail",
+    "passwordPlaceholder": "Password",
+    "description": "Description",
+    "submit": "Submit",
+    "name": "Name",
+    "delete": "Delete",
+    "endDate": "End Date"
 }

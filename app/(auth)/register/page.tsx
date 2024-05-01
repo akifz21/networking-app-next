@@ -1,5 +1,4 @@
 "use client";
-
 import { register } from "@/app/api/auth";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -7,8 +6,10 @@ import { UserRegister } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 export default function Register() {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const [formData, setFormData] = useState<UserRegister>({
@@ -30,7 +31,7 @@ export default function Register() {
     setIsLoading(true);
     try {
       const res = await register(formData);
-      toast.success("Kayıt Başarılı.");
+      toast.success(t("register.successMessage"));
       router.push("/login");
     } catch (error: any) {
       toast.error(error.message);
@@ -42,14 +43,14 @@ export default function Register() {
   return (
     <div className={"grid gap-6"}>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">Hesap Oluştur</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{t("register.title")}</h1>
       </div>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Input
               id="firstName"
-              placeholder="First Name"
+              placeholder={t("register.firstNamePlaceholder")}
               type="text"
               autoCapitalize="none"
               name="firstName"
@@ -64,7 +65,7 @@ export default function Register() {
               name="lastName"
               onChange={handleChange}
               value={formData.lastName}
-              placeholder="Last Name"
+              placeholder={t("register.lastNamePlaceholder")}
               type="text"
               autoCapitalize="none"
               disabled={isLoading}
@@ -73,7 +74,7 @@ export default function Register() {
           <div className="grid gap-1">
             <Input
               id="email"
-              placeholder="E-Mail"
+              placeholder={t("email")}
               onChange={handleChange}
               name="email"
               value={formData.email}
@@ -87,14 +88,14 @@ export default function Register() {
               id="password"
               name="password"
               onChange={handleChange}
-              placeholder="Password"
+              placeholder={t("register.passwordPlaceholder")}
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
               disabled={isLoading}
             />
           </div>
-          <Button disabled={isLoading}>Kayıt ol</Button>
+          <Button disabled={isLoading}>{t("register.registerButtonText")}</Button>
         </div>
       </form>
       <div className="relative">
@@ -102,11 +103,11 @@ export default function Register() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">Hesabın var mı ?</span>
+          <span className="bg-background px-2 text-muted-foreground">{t("register.haveAccount")}</span>
         </div>
       </div>
       <Button onClick={() => router.push("/login")} variant="outline" type="button" disabled={isLoading}>
-        Giriş yap
+        {t("register.loginButtonText")}
       </Button>
     </div>
   );

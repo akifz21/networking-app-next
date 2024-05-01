@@ -15,7 +15,7 @@ export default function PostList({ data, isLoading, error }: Props) {
   if (isLoading) {
     return (
       <center className="mt-10">
-        <Loader2 size={60} strokeWidth={3} className="animate-spin  " />
+        <Loader2 size={60} strokeWidth={3} className="animate-spin" />
       </center>
     );
   }

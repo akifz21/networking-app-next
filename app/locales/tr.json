@@ -1,3 +1,34 @@
 {
-    "hello":"Merhaba"
+    "login": {
+        "title": "Giriş yap",
+        "buttonText": "Giriş",
+        "noAccount": "Hesabın Yok mu ?",
+        "registerButtonText": "Kayıt Ol"
+    },
+    "register": {
+        "title": "Hesap Oluştur",
+        "firstNamePlaceholder": "Ad",
+        "lastNamePlaceholder": "Soyad",
+        "registerButtonText": "Kayıt Ol",
+        "haveAccount": "Hesabın var mı ?",
+        "loginButtonText": "Giriş yap"
+    },
+    "companyPage": {
+        "aboutTab": "Hakkında",
+        "jobsTab": "İş İlanları",
+        "workersTab": "Çalışanlar",
+        "createCompany": "Şirket Oluştur",
+        "companyList": "Şirket Listesi",
+        "shareJob": "İş paylaş",
+        "applications": "Başvurular",
+        "applicationList": "Başvuru Listesi",
+        "owner": "Sahibi"
+    },
+    "email": "E-Mail",
+    "passwordPlaceholder": "Şifre",
+    "description": "Açıklama",
+    "submit": "Onayla",
+    "name": "İsim",
+    "delete": "Sil",
+    "endDate": "Bitiş Tarihi"
 }

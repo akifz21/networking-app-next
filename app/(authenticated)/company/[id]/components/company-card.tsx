@@ -1,13 +1,10 @@
 "use client";
-import { fetcher } from "@/app/api/axiosInstance";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Company } from "@/app/types";
 import React from "react";
-import useSWR from "swr";
-import dynamic from "next/dynamic";
-import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   company: Company | undefined;
@@ -15,6 +12,8 @@ type Props = {
 };
 
 export default function CompanyCard({ company, error }: Props) {
+  const { t } = useTranslation();
+
   if (error) return <>{error?.message}</>;
 
   return (
@@ -32,7 +31,7 @@ export default function CompanyCard({ company, error }: Props) {
         <CardContent>
           <CardDescription className="flex flex-col">
             <Link href={`/profile/${company?.ownerId}`}>
-              Sahibi: {company?.ownerFirstName} {company?.ownerLastName}
+              {t("companyPage.owner")} {company?.ownerFirstName} {company?.ownerLastName}
             </Link>
           </CardDescription>
         </CardContent>

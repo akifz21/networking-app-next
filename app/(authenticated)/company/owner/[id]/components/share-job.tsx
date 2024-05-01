@@ -8,6 +8,7 @@ import { JobRequest } from "@/app/types";
 import { Pencil } from "lucide-react";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   companyId: string;
@@ -20,6 +21,8 @@ export function ShareJob({ companyId }: Props) {
     title: "",
     endDate: "",
   });
+
+  const { t } = useTranslation();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,14 +47,20 @@ export function ShareJob({ companyId }: Props) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>İş Paylaş</DialogTitle>
+          <DialogTitle>{t("companyPage.shareJob")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
           <Input onChange={handleChange} name="title" id="title" placeholder="İsim" type="text" />
           <Textarea onChange={handleChange} name="description" placeholder="Açıklama" id="description" />
           <div className="flex flex-col items-start gap-2">
-            <Label>Bitiş Tarihi: </Label>
-            <Input onChange={handleChange} name="endDate" id="endDate" type="datetime-local" placeholder="End date" />
+            <Label>{t("endDate")}</Label>
+            <Input
+              onChange={handleChange}
+              name="endDate"
+              id="endDate"
+              type="datetime-local"
+              placeholder={t("endDate")}
+            />
           </div>
           <Button type="submit">Submit</Button>
         </form>
