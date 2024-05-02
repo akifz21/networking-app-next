@@ -33,7 +33,7 @@ export default function Profile() {
         </>
       ) : (
         <>
-          <NavItem title="Sign in / Register" href="/register" Icon={User} />
+          <NavItem title={t("login/register")} href="/register" Icon={User} />
         </>
       )}
     </>

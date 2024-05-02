@@ -35,7 +35,14 @@
         "postsTab": "Gönderiler",
         "aboutTab": "Hakkında",
         "followersTab": "Takipçiler",
-        "followingTab": "Takip edilenler"
+        "followingTab": "Takip edilenler",
+        "follow": "Takip Et",
+        "unfollow": "Takipten çık"
+    },
+    "links": {
+        "home": "Anasayfa",
+        "jobRecommendations": "İş önerileri",
+        "jobs": "İş ilanları"
     },
     "email": "E-Mail",
     "password": "Şifre",
@@ -43,5 +50,10 @@
     "submit": "Onayla",
     "name": "İsim",
     "delete": "Sil",
-    "endDate": "Bitiş Tarihi"
+    "endDate": "Bitiş Tarihi",
+    "send": "Gönder",
+    "sharePost": "Gönderi Paylaş",
+    "images": "Resimler",
+    "share": "Paylaş",
+    "login/register": "Giriş Yap / Kayıt ol"
 }

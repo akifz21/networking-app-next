@@ -17,11 +17,13 @@ import { useAuthStore } from "@/app/stores/authStore";
 import { Loader2, Plus } from "lucide-react";
 import toast from "react-hot-toast";
 import { mutate } from "swr";
+import { useTranslation } from "react-i18next";
 
 export default function PostDialog() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [description, setDescription] = useState<string>("");
+  const { t } = useTranslation();
   const [open, setOpen] = useState<boolean>(false);
   const user = useAuthStore((state) => state.user);
 
@@ -70,13 +72,13 @@ export default function PostDialog() {
       <DialogContent className="sm:max-w-[780px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Gönderi paylaş</DialogTitle>
+            <DialogTitle>{t("sharePost")}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col gap-4 py-4">
             <div>
               <Textarea
                 id="description"
-                placeholder="Description"
+                placeholder={t("description")}
                 className="w-full"
                 name="description"
                 value={description}
@@ -84,7 +86,7 @@ export default function PostDialog() {
               />
             </div>
             <div className="flex flex-row items-center gap-2">
-              <Label>Resimler</Label>
+              <Label>{t("images")}</Label>
               <Input
                 id="file"
                 type="file"
@@ -98,7 +100,7 @@ export default function PostDialog() {
           </div>
           <DialogFooter>
             <Button type="submit" className="w-full">
-              {isLoading ? <Loader2 strokeWidth={3} className="animate-spin" /> : "Share"}
+              {isLoading ? <Loader2 strokeWidth={3} className="animate-spin" /> : t("share")}
             </Button>
           </DialogFooter>
         </form>

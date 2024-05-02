@@ -39,7 +39,14 @@
         "postsTab": "Posts",
         "aboutTab": "About",
         "followersTab": "Followers",
-        "followingTab": "Following"
+        "followingTab": "Following",
+        "follow": "Follow",
+        "unfollow": "Unfollow"
+    },
+    "links": {
+        "home": "Home",
+        "jobRecommendations": "Job Recommendations",
+        "jobs": "Jobs"
     },
     "email": "E-Mail",
     "password": "Password",
@@ -47,5 +54,10 @@
     "submit": "Submit",
     "name": "Name",
     "delete": "Delete",
-    "endDate": "End Date"
+    "endDate": "End Date",
+    "send": "Send",
+    "sharePost": "Share Post",
+    "images": "Images",
+    "share": "Share",
+    "login/register": "Login / Register"
 }
