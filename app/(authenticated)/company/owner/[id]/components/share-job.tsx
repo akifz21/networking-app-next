@@ -50,8 +50,8 @@ export function ShareJob({ companyId }: Props) {
           <DialogTitle>{t("companyPage.shareJob")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
-          <Input onChange={handleChange} name="title" id="title" placeholder="İsim" type="text" />
-          <Textarea onChange={handleChange} name="description" placeholder="Açıklama" id="description" />
+          <Input onChange={handleChange} name="title" id="title" placeholder={t("name")} type="text" />
+          <Textarea onChange={handleChange} name="description" placeholder={t("description")} id="description" />
           <div className="flex flex-col items-start gap-2">
             <Label>{t("endDate")}</Label>
             <Input

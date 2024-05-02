@@ -8,8 +8,10 @@ import ProfileCard from "../components/profile-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import FollowerList from "../components/follower-list";
 import FollowingList from "../components/following-list";
+import { useTranslation } from "react-i18next";
 
 export default function Page({ params }: { params: { id: string } }) {
+  const { t } = useTranslation();
   const { data, isLoading, error } = useSWR<Post[]>(`/posts/posts/user/${params.id}`, fetcher);
   const { data: user, error: userError } = useSWR<User>(`/users/${params.id}`, fetcher);
 
@@ -19,16 +21,16 @@ export default function Page({ params }: { params: { id: string } }) {
       <Tabs defaultValue="posts" className="w-full">
         <TabsList className="w-full flex">
           <TabsTrigger value="posts" className="flex-1">
-            Gönderiler
+            {t("profilePage.postsTab")}
           </TabsTrigger>
           <TabsTrigger value="about" className="flex-1">
-            Hakkında
+            {t("profilePage.aboutTab")}
           </TabsTrigger>
           <TabsTrigger value="followers" className="flex-1">
-            Takipçiler
+            {t("profilePage.followersTab")}
           </TabsTrigger>
           <TabsTrigger value="following" className="flex-1">
-            Takip edilenler
+            {t("profilePage.followingTab")}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="posts">

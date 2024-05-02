@@ -8,6 +8,7 @@ import DarkModeToggle from "./theme-toggle";
 import NavItem, { NavItemType } from "./nav-item";
 
 import { useAuthStore } from "@/app/stores/authStore";
+import LangChange from "./lang-change";
 const Profile = dynamic(() => import("./profile"), {
   ssr: false,
   loading: () => <Loader2 strokeWidth={3} className="animate-spin" />,
@@ -53,7 +54,10 @@ export default function Navbar({ theme }: Props) {
           ))}
           <Profile />
         </div>
-        <DarkModeToggle theme={theme} />
+        <div className="flex flex-row gap-2 items-center">
+          <DarkModeToggle theme={theme} />
+          <LangChange />
+        </div>
       </header>
     </TooltipProvider>
   );

@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import JobDetails from "../components/job-details";
 import { useAuthStore } from "@/app/stores/authStore";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 type JobRecommendation = {
   job: Job;
@@ -18,6 +19,7 @@ export default function Recommendations() {
   const auth = useAuthStore((state) => state.user);
   const [loading, setLoading] = useState<boolean>(false);
   const { data: user, error: userError } = useSWR<User>(`/users/${auth.id}`, fetcher);
+  const { t } = useTranslation();
 
   const [jobDetail, setJobDetails] = useState<Job>({
     companyId: "",
@@ -44,7 +46,7 @@ export default function Recommendations() {
   return (
     <div className="flex flex-row min-h-screen gap-4 w-full justify-betweenş pt-24 px-24">
       <div className="flex-1 flex flex-col gap-4">
-        <h1 className="self-center text-4xl font-bold">Önerilen İş İlanları</h1>
+        <h1 className="self-center text-4xl font-bold">{t("jobPage.recommendedJobs")}</h1>
         {data?.map((job) => (
           <JobCard setJobDetails={setJobDetails} score={job.similarity_score} job={job.job} key={job.job.id} />
         ))}

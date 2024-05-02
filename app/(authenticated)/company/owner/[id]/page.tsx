@@ -24,7 +24,7 @@ export default function OwnerCompanies({}: Props) {
   return (
     <div className="border-x min-h-screen flex flex-col pt-24 px-10 md:w-3/4 lg:w-1/2 w-full justify-start gap-4">
       <Link href="/company/create">
-        <Button>{t("createCompany")}</Button>
+        <Button>{t("companyPage.createCompany")}</Button>
       </Link>
       <Table>
         <TableCaption>{t("companyPage.companyList")}</TableCaption>

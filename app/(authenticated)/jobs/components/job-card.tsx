@@ -17,7 +17,7 @@ export default function JobCard({ job, setJobDetails, score }: Props) {
         <CardDescription className="flex flex-col gap-2">
           <span>{formatDateForShow(job.endDate)}</span>
           <span>{job.companyName}</span>
-          {score && <span>Uyumluluk : {score}</span>}
+          {score && <span> {score}</span>}
         </CardDescription>
       </CardHeader>
     </Card>

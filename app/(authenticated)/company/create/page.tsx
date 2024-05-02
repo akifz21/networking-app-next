@@ -53,14 +53,7 @@ export default function CompanyCreate() {
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center w-full justify-center h-full lg:px-8">
         <h1 className="font-bold lg:hidden text-4xl ">{t("companyPage.createCompany")}</h1>
-        <Input
-          id="name"
-          placeholder={t("companyPage.name")}
-          name="name"
-          type="text"
-          value={form.name}
-          onChange={handleChange}
-        />
+        <Input id="name" placeholder={t("name")} name="name" type="text" value={form.name} onChange={handleChange} />
 
         <Input
           id="email"

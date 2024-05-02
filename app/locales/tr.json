@@ -3,7 +3,8 @@
         "title": "Giriş yap",
         "buttonText": "Giriş",
         "noAccount": "Hesabın Yok mu ?",
-        "registerButtonText": "Kayıt Ol"
+        "registerButtonText": "Kayıt Ol",
+        "successMessage": "Giriş Başarılı"
     },
     "register": {
         "title": "Hesap Oluştur",
@@ -24,8 +25,20 @@
         "applicationList": "Başvuru Listesi",
         "owner": "Sahibi"
     },
+    "jobPage": {
+        "withdrawApplication": "Başvuruyu geri al",
+        "apply": "Başvur",
+        "recommendedJobs": "Önerilen İş ilanları",
+        "jobs": "İş ilanları"
+    },
+    "profilePage": {
+        "postsTab": "Gönderiler",
+        "aboutTab": "Hakkında",
+        "followersTab": "Takipçiler",
+        "followingTab": "Takip edilenler"
+    },
     "email": "E-Mail",
-    "passwordPlaceholder": "Şifre",
+    "password": "Şifre",
     "description": "Açıklama",
     "submit": "Onayla",
     "name": "İsim",

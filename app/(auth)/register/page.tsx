@@ -88,7 +88,7 @@ export default function Register() {
               id="password"
               name="password"
               onChange={handleChange}
-              placeholder={t("register.passwordPlaceholder")}
+              placeholder={t("password")}
               type="password"
               autoCapitalize="none"
               autoCorrect="off"

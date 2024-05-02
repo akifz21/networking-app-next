@@ -63,7 +63,7 @@ export default function Login() {
           <div className="grid gap-1">
             <Input
               id="password"
-              placeholder={t("login.passwordPlaceholder")}
+              placeholder={t("password")}
               name="password"
               type="password"
               value={formData.password}

@@ -5,8 +5,8 @@ import { applyJob, deleteApplication } from "@/app/api/job-application";
 import { Button } from "@/app/components/ui/button";
 import { useAuthStore } from "@/app/stores/authStore";
 import { Loader2 } from "lucide-react";
-import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 
 type Props = {
@@ -15,6 +15,7 @@ type Props = {
 
 export default function Apply({ jobId }: Props) {
   const user = useAuthStore((state) => state.user);
+  const { t } = useTranslation();
   const {
     data: isApplied,
     isLoading: loadingApplied,
@@ -45,10 +46,10 @@ export default function Apply({ jobId }: Props) {
         <>
           {isApplied ? (
             <Button onClick={() => toggleApply()} variant={"secondary"}>
-              Başvuruyu Geri Al
+              {t("jobPage.withdrawApplication")}
             </Button>
           ) : (
-            <Button onClick={() => toggleApply()}>Başvur</Button>
+            <Button onClick={() => toggleApply()}>{t("jobPage.apply")}</Button>
           )}
         </>
       )}

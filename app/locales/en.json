@@ -2,17 +2,18 @@
     "login": {
         "title": "Login",
         "email": "E-Mail",
-        "passwordPlaceholder": "Password",
+        "password": "Password",
         "buttonText": "Login",
         "noAccount": "Don't have an account?",
-        "registerButtonText": "Register"
+        "registerButtonText": "Register",
+        "successMessage": "Login successfully"
     },
     "register": {
         "title": "Create an Account",
         "firstNamePlaceholder": "First Name",
         "lastNamePlaceholder": "Last Name",
         "email": "E-Mail",
-        "passwordPlaceholder": "Password",
+        "password": "Password",
         "registerButtonText": "Register",
         "haveAccount": "Already have an account?",
         "loginButtonText": "Log In"
@@ -28,8 +29,20 @@
         "applicationList": "Application List",
         "owner": "Owner"
     },
+    "jobPage": {
+        "withdrawApplication": "Withdraw the application",
+        "apply": "Apply",
+        "recommendedJobs": "Recommended Jobs",
+        "jobs": "Jobs"
+    },
+    "profilePage": {
+        "postsTab": "Posts",
+        "aboutTab": "About",
+        "followersTab": "Followers",
+        "followingTab": "Following"
+    },
     "email": "E-Mail",
-    "passwordPlaceholder": "Password",
+    "password": "Password",
     "description": "Description",
     "submit": "Submit",
     "name": "Name",
