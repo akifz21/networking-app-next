@@ -7,12 +7,14 @@ import EmployeeList from "./components/employee-list";
 import useSWR from "swr";
 import { Company } from "@/app/types";
 import { fetcher } from "@/app/api/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   params: { id: string };
 };
 
 export default function CompanyPage({ params }: Props) {
+  const { t } = useTranslation();
   const { data: company, isLoading, error } = useSWR<Company | undefined>(`/company/${params.id}`, fetcher);
 
   return (
@@ -21,13 +23,13 @@ export default function CompanyPage({ params }: Props) {
       <Tabs defaultValue="jobs" className="w-full">
         <TabsList className="w-full flex">
           <TabsTrigger value="about" className="flex-1">
-            Hakkında
+            {t("companyPage.aboutTab")}
           </TabsTrigger>
           <TabsTrigger value="jobs" className="flex-1">
-            İş ilanları
+            {t("companyPage.jobsTab")}
           </TabsTrigger>
           <TabsTrigger value="workers" className="flex-1">
-            Çalışanlar
+            {t("companyPage.workersTab")}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="about">{company?.description}</TabsContent>

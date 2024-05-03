@@ -1,3 +1,71 @@
 {
-    "hello":"Hello"
+    "login": {
+        "title": "Login",
+        "email": "E-Mail",
+        "password": "Password",
+        "buttonText": "Login",
+        "noAccount": "Don't have an account?",
+        "registerButtonText": "Register",
+        "successMessage": "Login successfully"
+    },
+    "register": {
+        "title": "Create an Account",
+        "firstNamePlaceholder": "First Name",
+        "lastNamePlaceholder": "Last Name",
+        "email": "E-Mail",
+        "password": "Password",
+        "registerButtonText": "Register",
+        "haveAccount": "Already have an account?",
+        "loginButtonText": "Log In"
+    },
+    "companyPage": {
+        "aboutTab": "About",
+        "jobsTab": "Job Listings",
+        "workersTab": "Employees",
+        "createCompany": "Create Company",
+        "companyList": "Company List",
+        "shareJob": "Share Job",
+        "applications": "Applications",
+        "applicationList": "Application List",
+        "owner": "Owner"
+    },
+    "jobPage": {
+        "withdrawApplication": "Withdraw the application",
+        "apply": "Apply",
+        "recommendedJobs": "Recommended Jobs",
+        "jobs": "Jobs"
+    },
+    "profilePage": {
+        "postsTab": "Posts",
+        "aboutTab": "About",
+        "followersTab": "Followers",
+        "followingTab": "Following",
+        "follow": "Follow",
+        "unfollow": "Unfollow"
+    },
+    "links": {
+        "home": "Home",
+        "jobRecommendations": "Job Recommendations",
+        "jobs": "Jobs",
+        "toggleTheme": "Toggle Theme",
+        "companies": "Companies",
+        "profile": "Profile"
+    },
+    "post": {
+        "noComment": "No comments found",
+        "comments": "Comments",
+        "noPosts": "No post found"
+    },
+    "email": "E-Mail",
+    "password": "Password",
+    "description": "Description",
+    "submit": "Submit",
+    "name": "Name",
+    "delete": "Delete",
+    "endDate": "End Date",
+    "send": "Send",
+    "sharePost": "Share Post",
+    "images": "Images",
+    "share": "Share",
+    "login/register": "Login / Register"
 }

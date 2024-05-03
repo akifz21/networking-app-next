@@ -13,6 +13,7 @@ import SockJS from "sockjs-client";
 import { Message as MessageType } from "@/app/types";
 import useSWR from "swr";
 import { fetcher } from "@/app/api/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   id: string;
@@ -24,6 +25,7 @@ export default function Message({ id, name }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<string | null>(null);
   const [messageToSend, setMessageToSend] = useState<string>();
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<MessageType[]>([]);
   const {
     data: oldMessages,
@@ -81,7 +83,7 @@ export default function Message({ id, name }: Props) {
         </SheetTrigger>
         <SheetContent className="flex flex-col gap-4 overflow-y-scroll">
           <SheetHeader>
-            <SheetTitle>Mesajlar</SheetTitle>
+            <SheetTitle>{t("profilePage.messages")}</SheetTitle>
           </SheetHeader>
           {isLoading ? (
             <>
@@ -104,7 +106,7 @@ export default function Message({ id, name }: Props) {
                   }}
                   className="flex flex-row items-center gap-2"
                 >
-                  Send
+                  {t("send")}
                   <Send />
                 </Button>
               </div>

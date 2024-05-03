@@ -15,12 +15,12 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en",
+  lng: "tr",
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },
-  react: { useSuspense: false }, //this line
+  react: { useSuspense: true }, //this line
 });
 
 export default i18n;

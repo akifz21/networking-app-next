@@ -18,6 +18,7 @@ import { JobApplication } from "@/app/types/job-application.types";
 import { Loader2 } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 
 type Props = {
@@ -28,15 +29,16 @@ type Props = {
 export default function Applications({ jobId, companyId }: Props) {
   const { data, isLoading, error } = useSWR<JobApplication[]>(`/jobs/applications/job/${jobId}`, fetcher);
   const [open, setOpen] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Başvurular</Button>
+        <Button>{t("companyPage.applications")}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Başvuru listesi</DialogTitle>
+          <DialogTitle>{t("companyPage.applicationList")}</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         {isLoading ? (
@@ -67,13 +69,14 @@ const ApplicationCard = ({
   const handleApprove = async (userId: string) => {
     try {
       const res = await addEmployee({ companyId: companyId, userId: userId });
-      const deleteRes = await deleteApplication(application.userId, application.jobId);
+      await deleteApplication(application.userId, application.jobId);
       toast.success(res.data);
       setOpen(!open);
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
+  const { t } = useTranslation();
 
   return (
     <Card className="p-0 flex flex-row justify-between items-center">
@@ -85,7 +88,7 @@ const ApplicationCard = ({
       <CardContent className="flex flex-row text-sm items-center gap-4  py-4">
         <span>{formatDateForShow(application.createdDate, true)}</span>
         <Button onClick={() => handleApprove(application.userId)} size={"sm"} className="bg-green-600">
-          Onayla
+          {t("submit")}
         </Button>
       </CardContent>
     </Card>

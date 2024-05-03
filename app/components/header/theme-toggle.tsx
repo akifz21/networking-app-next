@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { MoonStar, Sun } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 const DarkModeToggle = ({ theme }: { theme: string }) => {
   const [_theme, setTheme] = useState(theme);
+  const { t } = useTranslation();
 
   const toogleTheme = () => {
     const root = document.getElementsByTagName("html")[0];
@@ -32,7 +34,7 @@ const DarkModeToggle = ({ theme }: { theme: string }) => {
           {_theme == "dark" ? <MoonStar size={32} /> : <Sun size={32} />}
         </Button>
       </TooltipTrigger>
-      <TooltipContent>Toggle Theme</TooltipContent>
+      <TooltipContent>{t("links.toggleTheme")}</TooltipContent>
     </Tooltip>
   );
 };

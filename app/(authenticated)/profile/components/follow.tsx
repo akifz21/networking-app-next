@@ -6,6 +6,7 @@ import { useAuthStore } from "@/app/stores/authStore";
 import { FollowRequest } from "@/app/types";
 import React from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 
 export default function Follow({ id }: Props) {
   const user = useAuthStore((state) => state.user);
+  const { t } = useTranslation();
   const {
     data: isFollowing,
     isLoading,
@@ -43,7 +45,7 @@ export default function Follow({ id }: Props) {
           variant={isFollowing ? "outline" : "default"}
           onClick={() => handleFollow({ userId: user.id, followingId: id })}
         >
-          {isFollowing ? "Unfollow" : "Follow"}
+          {isFollowing ? t("profilePage.unfollow") : t("profilePage.follow")}
         </Button>
       )}
     </>

@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import { Post } from "../types";
 import { Loader2 } from "lucide-react";
 import PostCard from "./post-card";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   data: Post[] | undefined;
@@ -10,18 +12,19 @@ type Props = {
 };
 
 export default function PostList({ data, isLoading, error }: Props) {
+  const { t } = useTranslation();
   if (error) return <>{error.message}</>;
 
   if (isLoading) {
     return (
       <center className="mt-10">
-        <Loader2 size={60} strokeWidth={3} className="animate-spin  " />
+        <Loader2 size={60} strokeWidth={3} className="animate-spin" />
       </center>
     );
   }
 
   if (data && data?.length <= 0) {
-    return <>Bu kullanıcının gönderisi yok.</>;
+    return <>{t("posts.noPosts")}</>;
   }
 
   return (

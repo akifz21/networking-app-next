@@ -2,7 +2,6 @@ import { usePostImages } from "@/app/hooks/usePostImages";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { Card, CardContent } from "@/app/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/app/components/ui/carousel";
 
 type Props = {

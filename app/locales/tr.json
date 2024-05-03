@@ -1,3 +1,67 @@
 {
-    "hello":"Merhaba"
+    "login": {
+        "title": "Giriş yap",
+        "buttonText": "Giriş",
+        "noAccount": "Hesabın Yok mu ?",
+        "registerButtonText": "Kayıt Ol",
+        "successMessage": "Giriş Başarılı"
+    },
+    "register": {
+        "title": "Hesap Oluştur",
+        "firstNamePlaceholder": "Ad",
+        "lastNamePlaceholder": "Soyad",
+        "registerButtonText": "Kayıt Ol",
+        "haveAccount": "Hesabın var mı ?",
+        "loginButtonText": "Giriş yap"
+    },
+    "companyPage": {
+        "aboutTab": "Hakkında",
+        "jobsTab": "İş İlanları",
+        "workersTab": "Çalışanlar",
+        "createCompany": "Şirket Oluştur",
+        "companyList": "Şirket Listesi",
+        "shareJob": "İş paylaş",
+        "applications": "Başvurular",
+        "applicationList": "Başvuru Listesi",
+        "owner": "Sahibi"
+    },
+    "jobPage": {
+        "withdrawApplication": "Başvuruyu geri al",
+        "apply": "Başvur",
+        "recommendedJobs": "Önerilen İş ilanları",
+        "jobs": "İş ilanları"
+    },
+    "profilePage": {
+        "postsTab": "Gönderiler",
+        "aboutTab": "Hakkında",
+        "followersTab": "Takipçiler",
+        "followingTab": "Takip edilenler",
+        "follow": "Takip Et",
+        "unfollow": "Takipten çık"
+    },
+    "links": {
+        "home": "Anasayfa",
+        "jobRecommendations": "İş önerileri",
+        "jobs": "İş ilanları",
+        "toggleTheme": "Tema Değiştir",
+        "companies": "Şirketler",
+        "profile": "Profil"
+    },
+    "post": {
+        "noComment": "Herhangi bir yorum bulunmadı.",
+        "comments": "Yorumlar",
+        "noPosts": "Herhangi bir gönderi bulunamdı."
+    },
+    "email": "E-Mail",
+    "password": "Şifre",
+    "description": "Açıklama",
+    "submit": "Onayla",
+    "name": "İsim",
+    "delete": "Sil",
+    "endDate": "Bitiş Tarihi",
+    "send": "Gönder",
+    "sharePost": "Gönderi Paylaş",
+    "images": "Resimler",
+    "share": "Paylaş",
+    "login/register": "Giriş Yap / Kayıt ol"
 }

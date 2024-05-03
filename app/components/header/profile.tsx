@@ -6,11 +6,13 @@ import NavItem from "./nav-item";
 import { Building, LogOut, User } from "lucide-react";
 import PostDialog from "./post-share-dialog";
 import { Button } from "../ui/button";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const logout = useAuthStore((state) => state.logout);
+  const { t } = useTranslation();
   const router = useRouter();
 
   return (
@@ -18,8 +20,8 @@ export default function Profile() {
       {isLoggedIn ? (
         <>
           <PostDialog />
-          <NavItem title="Profile" Icon={User} href={`/profile/${user.id}`} />
-          <NavItem title="Companies" Icon={Building} href={`/company/owner/${user.id}`} />
+          <NavItem title={t("links.profile")} Icon={User} href={`/profile/${user.id}`} />
+          <NavItem title={t("links.companies")} Icon={Building} href={`/company/owner/${user.id}`} />
           <Button
             onClick={() => logout()}
             variant={"ghost"}
@@ -31,7 +33,7 @@ export default function Profile() {
         </>
       ) : (
         <>
-          <NavItem title="Sign in / Register" href="/register" Icon={User} />
+          <NavItem title={t("login/register")} href="/register" Icon={User} />
         </>
       )}
     </>
