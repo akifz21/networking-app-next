@@ -46,7 +46,15 @@
     "links": {
         "home": "Home",
         "jobRecommendations": "Job Recommendations",
-        "jobs": "Jobs"
+        "jobs": "Jobs",
+        "toggleTheme": "Toggle Theme",
+        "companies": "Companies",
+        "profile": "Profile"
+    },
+    "post": {
+        "noComment": "No comments found",
+        "comments": "Comments",
+        "noPosts": "No post found"
     },
     "email": "E-Mail",
     "password": "Password",

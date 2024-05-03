@@ -20,8 +20,8 @@ export default function Profile() {
       {isLoggedIn ? (
         <>
           <PostDialog />
-          <NavItem title="Profile" Icon={User} href={`/profile/${user.id}`} />
-          <NavItem title="Companies" Icon={Building} href={`/company/owner/${user.id}`} />
+          <NavItem title={t("links.profile")} Icon={User} href={`/profile/${user.id}`} />
+          <NavItem title={t("links.companies")} Icon={Building} href={`/company/owner/${user.id}`} />
           <Button
             onClick={() => logout()}
             variant={"ghost"}

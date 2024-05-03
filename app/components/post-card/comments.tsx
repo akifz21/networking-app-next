@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { useAuthStore } from "@/app/stores/authStore";
 import { fetcher } from "@/app/api/axiosInstance";
 import { formatDateForShow } from "@/app/lib/utils";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   id: string;
@@ -21,6 +22,7 @@ export function Comments({ id }: Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const user = useAuthStore((state) => state.user);
+  const { t } = useTranslation();
   const { data, isLoading, error, mutate } = useSWR<Comment[], Error>(
     open ? `/posts/comments/post/${id}` : null,
     fetcher
@@ -59,7 +61,7 @@ export function Comments({ id }: Props) {
     if (isLoading) return <Loader2 strokeWidth={3} size={40} className="animate-spin self-center" />;
 
     if (data && data?.length <= 0) {
-      return <div>Yorum bulunamadı.</div>;
+      return <div>{t("post.noComments")}</div>;
     }
 
     return (
@@ -89,7 +91,7 @@ export function Comments({ id }: Props) {
       </SheetTrigger>
       <SheetContent className="overflow-y-scroll">
         <SheetHeader>
-          <SheetTitle>Yorumlar</SheetTitle>
+          <SheetTitle>{t("post.comments")}</SheetTitle>
         </SheetHeader>
         <div className="flex flex-col gap-4 py-4">
           <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
@@ -101,12 +103,11 @@ export function Comments({ id }: Props) {
               className="col-span-3"
             />
             <Button type="submit" disabled={submitLoading}>
-              Paylaş
+              {t("submit")}
             </Button>
           </form>
           <CommentList />
         </div>
-        <div className="flex flex-col gap-4"></div>
       </SheetContent>
     </Sheet>
   );

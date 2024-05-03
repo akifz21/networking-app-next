@@ -42,7 +42,15 @@
     "links": {
         "home": "Anasayfa",
         "jobRecommendations": "İş önerileri",
-        "jobs": "İş ilanları"
+        "jobs": "İş ilanları",
+        "toggleTheme": "Tema Değiştir",
+        "companies": "Şirketler",
+        "profile": "Profil"
+    },
+    "post": {
+        "noComment": "Herhangi bir yorum bulunmadı.",
+        "comments": "Yorumlar",
+        "noPosts": "Herhangi bir gönderi bulunamdı."
     },
     "email": "E-Mail",
     "password": "Şifre",
