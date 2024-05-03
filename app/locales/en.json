@@ -41,7 +41,8 @@
         "followersTab": "Followers",
         "followingTab": "Following",
         "follow": "Follow",
-        "unfollow": "Unfollow"
+        "unfollow": "Unfollow",
+        "messages": "Messages"
     },
     "links": {
         "home": "Home",
@@ -55,6 +56,12 @@
         "noComment": "No comments found",
         "comments": "Comments",
         "noPosts": "No post found"
+    },
+    "editPage": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "password": "Password",
+        "editProfile": "Edit profile"
     },
     "email": "E-Mail",
     "password": "Password",

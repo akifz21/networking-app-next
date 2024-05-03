@@ -6,8 +6,11 @@ import { User } from "@/app/types";
 import React from "react";
 import useSWR from "swr";
 import dynamic from "next/dynamic";
-import { Loader2 } from "lucide-react";
+import { Loader2, Settings } from "lucide-react";
 import Message from "./message";
+import Link from "next/link";
+import { Button } from "@/app/components/ui/button";
+import EditProfileDialog from "../[id]/edit-profile-dialog";
 
 const Follow = dynamic(() => import("./follow"), {
   ssr: false,
@@ -37,6 +40,7 @@ export default function ProfileCard({ user, error, id }: Props) {
             </span>
             <Follow id={id} />
             <Message id={id} name={user?.firstName + " " + user?.lastName} />
+            <EditProfileDialog user={user} id={id} />
           </CardTitle>
         </CardHeader>
       </Card>

@@ -16,6 +16,13 @@ export interface UserPayload {
   email: string;
 }
 
+export interface UserUpdate {
+  firstName: string;
+  lastName: string;
+  email: string;
+  description: string;
+}
+
 export interface User extends UserRegister {
   id: string;
   description: string;

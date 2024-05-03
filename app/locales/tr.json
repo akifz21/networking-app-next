@@ -37,7 +37,8 @@
         "followersTab": "Takipçiler",
         "followingTab": "Takip edilenler",
         "follow": "Takip Et",
-        "unfollow": "Takipten çık"
+        "unfollow": "Takipten çık",
+        "messages": "Mesajlar"
     },
     "links": {
         "home": "Anasayfa",
@@ -51,6 +52,12 @@
         "noComment": "Herhangi bir yorum bulunmadı.",
         "comments": "Yorumlar",
         "noPosts": "Herhangi bir gönderi bulunamdı."
+    },
+    "editPage": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "password": "Şifre",
+        "editProfile": "Profili düzenle"
     },
     "email": "E-Mail",
     "password": "Şifre",
