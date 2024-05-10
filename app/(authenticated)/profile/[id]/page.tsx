@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { t } = useTranslation();
-  const { data, isLoading, error } = useSWR<Post[]>(`/posts/posts/user/${params.id}`, fetcher);
+  const { data, isLoading, error, mutate } = useSWR<Post[]>(`/posts/posts/user/${params.id}`, fetcher);
   const { data: user, error: userError } = useSWR<User>(`/users/${params.id}`, fetcher);
 
   return (
@@ -34,7 +34,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="posts">
-          <PostList data={data} isLoading={isLoading} error={error} />
+          <PostList mutate={mutate} data={data} isLoading={isLoading} error={error} />
         </TabsContent>
         <TabsContent value="about">{user?.description}</TabsContent>
         <TabsContent value="followers">

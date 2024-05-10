@@ -61,7 +61,8 @@
         "firstName": "First Name",
         "lastName": "Last Name",
         "password": "Password",
-        "editProfile": "Edit profile"
+        "editProfile": "Edit profile",
+        "editPost": "Edit post"
     },
     "email": "E-Mail",
     "password": "Password",
@@ -71,6 +72,7 @@
     "delete": "Delete",
     "endDate": "End Date",
     "send": "Send",
+    "edit": "Edit",
     "sharePost": "Share Post",
     "images": "Images",
     "share": "Share",
