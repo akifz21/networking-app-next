@@ -1,5 +1,5 @@
 "use client";
-import { postImageUpload, postUpdate } from "@/app/api/post";
+import { postImageDelete, postImageUpload, postUpdate } from "@/app/api/post";
 import { Button } from "@/app/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
 import { Label } from "@/app/components/ui/label";
@@ -9,11 +9,14 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { Input } from "../ui/input";
+import { Settings, Trash } from "lucide-react";
+import { usePostImages } from "@/app/hooks/usePostImages";
 
 export default function PostEditDialog({ post, mutate }: { post: Post; mutate: any }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const { data, mutate: imageMutate } = usePostImages(post.id);
 
   const defaultValues = useMemo<PostUpdateRequest>(
     () => ({
@@ -63,13 +66,16 @@ export default function PostEditDialog({ post, mutate }: { post: Post; mutate: a
       setLoading(false);
       setOpen(!open);
       mutate();
+      imageMutate();
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant={"ghost"}>{t("edit")}</Button>
+        <Button variant={"ghost"} size={"icon"}>
+          <Settings size={24} />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-3xl">
         <DialogHeader>
@@ -96,6 +102,34 @@ export default function PostEditDialog({ post, mutate }: { post: Post; mutate: a
                 onChange={handleFileSelect}
                 multiple
               />
+            </div>
+            <div className="flex flex-row gap-2 items-center">
+              {data?.map((image) => (
+                <div>
+                  <Button
+                    variant={"destructive"}
+                    size={"icon"}
+                    type="button"
+                    onClick={async () => {
+                      try {
+                        await postImageDelete(image.id);
+                        toast.success("Image deleted");
+                        imageMutate();
+                      } catch (error: any) {
+                        toast.error(error.message);
+                      }
+                    }}
+                  >
+                    <Trash size={24} />
+                  </Button>
+                  <img
+                    key={image.id}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${image.id}`}
+                    alt={image.name}
+                    className="w-32 h-32 object-contain "
+                  />
+                </div>
+              ))}
             </div>
             <Button disabled={loading} className="w-full">
               {t("submit")}

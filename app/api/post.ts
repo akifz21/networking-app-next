@@ -11,4 +11,6 @@ const postUpdate = (postId: string, data: PostUpdateRequest) => axios.patch(`pos
 
 const postImageUpload = (data: FormData) => axios.post(`posts/post-images/upload`, data);
 
-export { postAdd, getUserPosts, deletePost, postUpdate, postImageUpload };
+const postImageDelete = (imageId: string) => axios.delete(`posts/post-images/${imageId}`);
+
+export { postAdd, getUserPosts, deletePost, postUpdate, postImageUpload, postImageDelete };
