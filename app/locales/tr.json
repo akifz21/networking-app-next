@@ -49,9 +49,10 @@
         "profile": "Profil"
     },
     "post": {
-        "noComment": "Herhangi bir yorum bulunmadı.",
+        "noComments": "Herhangi bir yorum bulunmadı.",
         "comments": "Yorumlar",
-        "noPosts": "Herhangi bir gönderi bulunamdı."
+        "noPosts": "Herhangi bir gönderi bulunamadı.",
+        "deletePost": "Gönderiyi silmek istediğinize emin misiniz ?"
     },
     "editPage": {
         "firstName": "Ad",
@@ -60,12 +61,15 @@
         "editProfile": "Profili düzenle",
         "editPost": "Gönderiyi düzenle"
     },
+    "authMessage1": "Bağlan, Büyü, Başar",
+    "authMessage2": "Profesyonel Ağına Buradan Başla.",
     "email": "E-Mail",
     "password": "Şifre",
     "description": "Açıklama",
     "submit": "Onayla",
     "name": "İsim",
     "delete": "Sil",
+    "cancel": "İptal",
     "endDate": "Bitiş Tarihi",
     "send": "Gönder",
     "edit": "Düzenle",

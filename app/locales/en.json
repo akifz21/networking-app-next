@@ -53,9 +53,10 @@
         "profile": "Profile"
     },
     "post": {
-        "noComment": "No comments found",
+        "noComments": "No comments found",
         "comments": "Comments",
-        "noPosts": "No post found"
+        "noPosts": "No post found",
+        "deletePost": "Are you sure you want to delete this post?"
     },
     "editPage": {
         "firstName": "First Name",
@@ -64,6 +65,8 @@
         "editProfile": "Edit profile",
         "editPost": "Edit post"
     },
+    "authMessage1": "Connect, Grow, Succeed",
+    "authMessage2": "Your Professional Network Starts Here.",
     "email": "E-Mail",
     "password": "Password",
     "description": "Description",
@@ -73,6 +76,7 @@
     "endDate": "End Date",
     "send": "Send",
     "edit": "Edit",
+    "cancel": "Cancel",
     "sharePost": "Share Post",
     "images": "Images",
     "share": "Share",
