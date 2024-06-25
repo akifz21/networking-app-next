@@ -12,6 +12,7 @@
         "title": "Create an Account",
         "firstNamePlaceholder": "First Name",
         "lastNamePlaceholder": "Last Name",
+        "successMessage": "Account created successfully",
         "email": "E-Mail",
         "password": "Password",
         "registerButtonText": "Register",
@@ -41,7 +42,8 @@
         "followersTab": "Followers",
         "followingTab": "Following",
         "follow": "Follow",
-        "unfollow": "Unfollow"
+        "unfollow": "Unfollow",
+        "messages": "Messages"
     },
     "links": {
         "home": "Home",
@@ -52,10 +54,20 @@
         "profile": "Profile"
     },
     "post": {
-        "noComment": "No comments found",
+        "noComments": "No comments found",
         "comments": "Comments",
-        "noPosts": "No post found"
+        "noPosts": "No post found",
+        "deletePost": "Are you sure you want to delete this post?"
     },
+    "editPage": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "password": "Password",
+        "editProfile": "Edit profile",
+        "editPost": "Edit post"
+    },
+    "authMessage1": "Connect, Grow, Succeed",
+    "authMessage2": "Your Professional Network Starts Here.",
     "email": "E-Mail",
     "password": "Password",
     "description": "Description",
@@ -64,8 +76,11 @@
     "delete": "Delete",
     "endDate": "End Date",
     "send": "Send",
+    "edit": "Edit",
+    "cancel": "Cancel",
     "sharePost": "Share Post",
     "images": "Images",
     "share": "Share",
-    "login/register": "Login / Register"
+    "login/register": "Login / Register",
+    "me": "Me"
 }

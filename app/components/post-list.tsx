@@ -9,9 +9,10 @@ type Props = {
   data: Post[] | undefined;
   isLoading: boolean;
   error: any;
+  mutate: any;
 };
 
-export default function PostList({ data, isLoading, error }: Props) {
+export default function PostList({ data, isLoading, error, mutate }: Props) {
   const { t } = useTranslation();
   if (error) return <>{error.message}</>;
 
@@ -24,12 +25,14 @@ export default function PostList({ data, isLoading, error }: Props) {
   }
 
   if (data && data?.length <= 0) {
-    return <>{t("posts.noPosts")}</>;
+    return <>{t("post.noPosts")}</>;
   }
 
   return (
     <div className="py-6">
-      <div className="flex flex-col gap-4">{data?.map((post) => <PostCard post={post} key={post.id} />)}</div>
+      <div className="flex flex-col gap-4">
+        {data?.map((post) => <PostCard post={post} mutate={mutate} key={post.id} />)}
+      </div>
     </div>
   );
 }

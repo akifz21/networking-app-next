@@ -12,3 +12,7 @@ export interface PostRequest {
   userId: string;
   description: string;
 }
+
+export interface PostUpdateRequest {
+  description: string;
+}

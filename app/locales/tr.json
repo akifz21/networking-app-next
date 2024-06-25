@@ -9,6 +9,7 @@
     "register": {
         "title": "Hesap Oluştur",
         "firstNamePlaceholder": "Ad",
+        "successMessage": "Kayıt Başarılı",
         "lastNamePlaceholder": "Soyad",
         "registerButtonText": "Kayıt Ol",
         "haveAccount": "Hesabın var mı ?",
@@ -37,7 +38,8 @@
         "followersTab": "Takipçiler",
         "followingTab": "Takip edilenler",
         "follow": "Takip Et",
-        "unfollow": "Takipten çık"
+        "unfollow": "Takipten çık",
+        "messages": "Mesajlar"
     },
     "links": {
         "home": "Anasayfa",
@@ -48,20 +50,33 @@
         "profile": "Profil"
     },
     "post": {
-        "noComment": "Herhangi bir yorum bulunmadı.",
+        "noComments": "Herhangi bir yorum bulunmadı.",
         "comments": "Yorumlar",
-        "noPosts": "Herhangi bir gönderi bulunamdı."
+        "noPosts": "Herhangi bir gönderi bulunamadı.",
+        "deletePost": "Gönderiyi silmek istediğinize emin misiniz ?"
     },
+    "editPage": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "password": "Şifre",
+        "editProfile": "Profili düzenle",
+        "editPost": "Gönderiyi düzenle"
+    },
+    "authMessage1": "Bağlan, Büyü, Başar",
+    "authMessage2": "Profesyonel Ağına Buradan Başla.",
     "email": "E-Mail",
     "password": "Şifre",
     "description": "Açıklama",
     "submit": "Onayla",
     "name": "İsim",
     "delete": "Sil",
+    "cancel": "İptal",
     "endDate": "Bitiş Tarihi",
     "send": "Gönder",
+    "edit": "Düzenle",
     "sharePost": "Gönderi Paylaş",
     "images": "Resimler",
     "share": "Paylaş",
-    "login/register": "Giriş Yap / Kayıt ol"
+    "login/register": "Giriş Yap / Kayıt ol",
+    "me": "Ben"
 }
