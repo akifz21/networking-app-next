@@ -25,7 +25,7 @@ export default function PostList({ data, isLoading, error, mutate }: Props) {
   }
 
   if (data && data?.length <= 0) {
-    return <>{t("posts.noPosts")}</>;
+    return <>{t("post.noPosts")}</>;
   }
 
   return (

@@ -12,6 +12,7 @@
         "title": "Create an Account",
         "firstNamePlaceholder": "First Name",
         "lastNamePlaceholder": "Last Name",
+        "successMessage": "Account created successfully",
         "email": "E-Mail",
         "password": "Password",
         "registerButtonText": "Register",
@@ -80,5 +81,6 @@
     "sharePost": "Share Post",
     "images": "Images",
     "share": "Share",
-    "login/register": "Login / Register"
+    "login/register": "Login / Register",
+    "me": "Me"
 }

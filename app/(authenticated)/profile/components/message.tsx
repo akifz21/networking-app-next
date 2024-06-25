@@ -137,10 +137,11 @@ export default function Message({ id, name }: Props) {
 }
 
 function MessageCard({ message, currentUserId, name }: { message: MessageType; currentUserId: string; name?: string }) {
+  const { t } = useTranslation();
   return (
     <Card className="flex flex-col gap-2">
       <CardHeader className="py-0 ">
-        <CardTitle className="text-md">{message?.senderId == currentUserId ? "Ben" : name}</CardTitle>
+        <CardTitle className="text-md">{message?.senderId == currentUserId ? t("me") : name}</CardTitle>
       </CardHeader>
       <CardContent className="py-0">{message?.message}</CardContent>
     </Card>

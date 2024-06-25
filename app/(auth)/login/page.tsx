@@ -27,7 +27,6 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   };
-
   async function onSubmit(event: SyntheticEvent) {
     event.preventDefault();
     try {

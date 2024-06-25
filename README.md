@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Frontend for Microservices Architecture Project
 
-First, run the development server:
+This project features the frontend for a microservices architecture, built using React, Next.js 14 App Router, Tailwind CSS, and i18next. This frontend interacts with the backend microservices through the API Gateway.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Table of Contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Overview](#overview)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The frontend part of this project is built to provide a user-friendly interface for interacting with the various microservices. It supports internationalization and responsive design.
 
-## Learn More
+## Technologies
 
-To learn more about Next.js, take a look at the following resources:
+- **React**:
+- **Next.js 14 App Router**
+- **Tailwind CSS**
+- **shadcn/ui**
+- **i18next**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Follow these steps to set up the frontend locally.
 
-## Deploy on Vercel
+### Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js
+- npm or yarn
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Steps
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/akifzdemir/networking-app-next.git
+   ```
+2. Navigate to the frontend directory:
+   ```sh
+   cd networking-app-next
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+   or
+   ```sh
+   yarn install
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
+   or
+   ```sh
+   yarn dev
+   ```
+
+## Usage
+
+- Once the development server is running, you can access the frontend application through your web browser at `http://localhost:3000`.
+- The frontend will communicate with the backend microservices via the API Gateway.
+
+## Screenshots
+
+Here are some screenshots of the frontend application:
+
+### Login Page
+![Login Page](/screen-shots/login.png)
+
+### Posts Page
+![Posts Page](/screen-shots/posts.png)
+
+### User Profile
+![User Profile](/screen-shots/user-profile.png)
+
+### Job List
+![Job List](/screen-shots/jobs.png)
+
+
+### Messages
+![Messages](/screen-shots/message.png)
+

@@ -9,6 +9,7 @@
     "register": {
         "title": "Hesap Oluştur",
         "firstNamePlaceholder": "Ad",
+        "successMessage": "Kayıt Başarılı",
         "lastNamePlaceholder": "Soyad",
         "registerButtonText": "Kayıt Ol",
         "haveAccount": "Hesabın var mı ?",
@@ -76,5 +77,6 @@
     "sharePost": "Gönderi Paylaş",
     "images": "Resimler",
     "share": "Paylaş",
-    "login/register": "Giriş Yap / Kayıt ol"
+    "login/register": "Giriş Yap / Kayıt ol",
+    "me": "Ben"
 }
